@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_header_footer">
+    <sp_header_footer action="INSERT_OR_UPDATE">
+        <chrome_template/>
+        <css>.idpbob-footer {
+    background-color: var(--carbon-ui-01);
+    border-top: 1px solid var(--carbon-ui-03);
+    padding: var(--carbon-spacing-07) var(--carbon-spacing-06);
+    margin-top: var(--carbon-spacing-09);
+    color: var(--carbon-text-02);
+}
+
+.idpbob-footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--carbon-spacing-05);
+}
+
+.idpbob-footer-links {
+    display: flex;
+    gap: var(--carbon-spacing-06);
+    flex-wrap: wrap;
+}
+
+.idpbob-footer-link {
+    color: var(--carbon-link-01);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.idpbob-footer-link:hover {
+    color: var(--carbon-hover-primary-text);
+    text-decoration: underline;
+}
+
+.idpbob-footer-copyright {
+    font-size: 12px;
+    color: var(--carbon-text-03);
+}
+
+.idpbob-footer-social {
+    display: flex;
+    gap: var(--carbon-spacing-04);
+}
+
+.idpbob-footer-social-link {
+    color: var(--carbon-text-02);
+    font-size: 18px;
+    transition: color 0.11s cubic-bezier(0.2, 0, 0.38, 0.9);
+}
+
+.idpbob-footer-social-link:hover {
+    color: var(--carbon-interactive-01);
+}
+
+@media (max-width: 768px) {
+    .idpbob-footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .idpbob-footer-links {
+        flex-direction: column;
+        gap: var(--carbon-spacing-03);
+    }
+}
+</css>
+        <header>false</header>
+        <template><![CDATA[<div class="idpbob-footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="idpbob-footer-content">
+                    <div class="idpbob-footer-links">
+                        <a href="?id=about" class="idpbob-footer-link">About</a>
+                        <a href="?id=contact" class="idpbob-footer-link">Contact</a>
+                        <a href="?id=privacy" class="idpbob-footer-link">Privacy Policy</a>
+                        <a href="?id=terms" class="idpbob-footer-link">Terms of Service</a>
+                        <a href="?id=help" class="idpbob-footer-link">Help</a>
+                    </div>
+                    <div class="idpbob-footer-copyright">
+                        © {{c.data.currentYear}} IDPBob Portal. Built with IBM Carbon Design System.
+                    </div>
+                    <div class="idpbob-footer-social">
+                        <a href="#" class="idpbob-footer-social-link" aria-label="GitHub">
+                            <i class="fa fa-github"></i>
+                        </a>
+                        <a href="#" class="idpbob-footer-social-link" aria-label="Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="idpbob-footer-social-link" aria-label="LinkedIn">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>]]></template>
+        <sys_class_name>sp_header_footer</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-01 09:30:00</sys_created_on>
+        <sys_id>5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>IDPBob Footer</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sp_header_footer_idpbob_footer</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-01 09:30:00</sys_updated_on>
+    </sp_header_footer>
+</record_update>
+
+<!-- Made with Bob -->
