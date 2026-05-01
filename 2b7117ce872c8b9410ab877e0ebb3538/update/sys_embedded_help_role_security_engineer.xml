@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role">
     <sys_embedded_help_role action="INSERT_OR_UPDATE">
         <order>400</order>
-        <role display_value="x_ibmin_idpbob.security_engineer" name="x_ibmin_idpbob.security_engineer">a4b4c4d4e4f4a4b4c4d4e4f4a4b4c4d4</role>
+        <role display_value="">a4b4c4d4e4f4a4b4c4d4e4f4a4b4c4d4</role>
         <sys_class_name>sys_embedded_help_role</sys_class_name>
         <sys_created_by>srinivas.anil.kumar.varanasi@ibm.com</sys_created_by>
         <sys_created_on>2026-05-01 09:30:00</sys_created_on>
@@ -16,5 +16,3 @@
         <sys_updated_on>2026-05-01 09:30:00</sys_updated_on>
     </sys_embedded_help_role>
 </record_update>
-
-<!-- Made with Bob -->
