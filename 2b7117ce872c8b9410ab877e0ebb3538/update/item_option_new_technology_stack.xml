@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="item_option_new">
+    <item_option_new action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <cat_item display_value="New Application Project">f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1</cat_item>
+        <choice_direction>down</choice_direction>
+        <choice_field/>
+        <choice_table/>
+        <default_value/>
+        <description>Select the primary technology stack for your application</description>
+        <help_text>Choose the framework or runtime that best fits your project needs</help_text>
+        <label>Technology Stack</label>
+        <lookup_label/>
+        <lookup_price/>
+        <lookup_table/>
+        <lookup_unique>false</lookup_unique>
+        <lookup_value/>
+        <mandatory>true</mandatory>
+        <name>technology_stack</name>
+        <order>300</order>
+        <question_text>What technology stack will you use?</question_text>
+        <reference/>
+        <reference_qual/>
+        <sys_class_name>item_option_new</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-01 15:00:00</sys_created_on>
+        <sys_id>f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Technology Stack</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>item_option_new_technology_stack</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-01 15:00:00</sys_updated_on>
+        <type>3</type>
+        <variable_set/>
+    </item_option_new>
+</record_update>
+
+<!-- Made with Bob -->

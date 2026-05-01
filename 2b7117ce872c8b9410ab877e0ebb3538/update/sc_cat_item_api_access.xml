@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item">
+    <sc_cat_item action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <availability>on_desktop</availability>
+        <billable>false</billable>
+        <category display_value="Developer Services">e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1</category>
+        <cost>0</cost>
+        <delivery_time>0</delivery_time>
+        <description><![CDATA[<p>Request access to internal or external APIs including:</p>
+<ul>
+<li>API key generation</li>
+<li>OAuth client credentials</li>
+<li>Rate limit configuration</li>
+<li>API documentation access</li>
+<li>Sandbox environment for testing</li>
+</ul>
+<p>Access will be provisioned within 2 hours during business hours.</p>]]></description>
+        <icon>code-box-line</icon>
+        <name>Request API Access</name>
+        <order>200</order>
+        <sc_catalogs>c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1</sc_catalogs>
+        <short_description>Request access to platform APIs and services</short_description>
+        <sys_class_name>sc_cat_item</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-01 15:00:00</sys_created_on>
+        <sys_id>f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Request API Access</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sc_cat_item_api_access</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-01 15:00:00</sys_updated_on>
+        <type>item</type>
+    </sc_cat_item>
+</record_update>
+
+<!-- Made with Bob -->

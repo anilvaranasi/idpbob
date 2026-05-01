@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item">
+    <sc_cat_item action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <availability>on_desktop</availability>
+        <billable>false</billable>
+        <category display_value="Developer Services">e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1</category>
+        <cost>0</cost>
+        <delivery_time>0</delivery_time>
+        <description><![CDATA[<p>Provision a new database instance with:</p>
+<ul>
+<li>Choice of database engine (PostgreSQL, MySQL, MongoDB, Redis)</li>
+<li>Automated backups and point-in-time recovery</li>
+<li>High availability configuration</li>
+<li>Monitoring and alerting</li>
+<li>Connection credentials and endpoints</li>
+<li>Security group configuration</li>
+</ul>
+<p>Database will be provisioned within 4 hours.</p>]]></description>
+        <icon>database-2-line</icon>
+        <name>Provision Database</name>
+        <order>300</order>
+        <sc_catalogs>c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1</sc_catalogs>
+        <short_description>Request a new database instance for your application</short_description>
+        <sys_class_name>sc_cat_item</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-01 15:00:00</sys_created_on>
+        <sys_id>f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Provision Database</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sc_cat_item_database_provisioning</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-01 15:00:00</sys_updated_on>
+        <type>item</type>
+    </sc_cat_item>
+</record_update>
+
+<!-- Made with Bob -->

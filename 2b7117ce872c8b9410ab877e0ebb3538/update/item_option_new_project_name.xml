@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="item_option_new">
+    <item_option_new action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <default_value/>
+        <description>Name of the project or application</description>
+        <example_text>my-awesome-app</example_text>
+        <help_text>Enter a unique name for your project (lowercase, alphanumeric, hyphens allowed)</help_text>
+        <label>Project Name</label>
+        <mandatory>true</mandatory>
+        <name>project_name</name>
+        <order>100</order>
+        <question_text>What is the name of your project?</question_text>
+        <reference/>
+        <reference_qual/>
+        <regex>^[a-z0-9-]+$</regex>
+        <scale_max>0</scale_max>
+        <scale_min>0</scale_min>
+        <sys_class_name>item_option_new</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-01 15:00:00</sys_created_on>
+        <sys_id>d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Project Name</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>item_option_new_project_name</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-01 15:00:00</sys_updated_on>
+        <type>1</type>
+        <variable_set display_value="Project Details">d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1</variable_set>
+    </item_option_new>
+</record_update>
+
+<!-- Made with Bob -->

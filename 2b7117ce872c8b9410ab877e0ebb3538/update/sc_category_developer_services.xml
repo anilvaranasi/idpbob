@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_category">
+    <sc_category action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Request development resources, environments, and platform services</description>
+        <entitlement_script/>
+        <header_icon/>
+        <homepage_image/>
+        <homepage_renderer/>
+        <homepage_text/>
+        <icon>tree-view-2-line</icon>
+        <image/>
+        <location>0</location>
+        <mobile_hide_description>false</mobile_hide_description>
+        <mobile_picture/>
+        <mobile_subcategory_render_type>list</mobile_subcategory_render_type>
+        <module/>
+        <order>100</order>
+        <parent/>
+        <roles/>
+        <sc_catalog display_value="IDP Service Catalog">c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1</sc_catalog>
+        <show_in_cms>false</show_in_cms>
+        <sys_class_name>sc_category</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-01 15:00:00</sys_created_on>
+        <sys_id>e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Developer Services</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sc_category_developer_services</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-01 15:00:00</sys_updated_on>
+        <title>Developer Services</title>
+    </sc_category>
+</record_update>
+
+<!-- Made with Bob -->
