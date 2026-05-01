@@ -5,7 +5,7 @@
         <description>Role for ServiceNow Platform Administrators who manage the ServiceNow platform and configurations</description>
         <elevated_privilege>false</elevated_privilege>
         <encryption_context/>
-        <federated_id/>
+        <federated_id>ZbdDQWloH6fRcNh2K/7dtxQfoS1qqPQozP9dnbUZsjM=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>
         <name>x_ibmin_idpbob.servicenow_admin</name>
@@ -25,5 +25,3 @@
         <sys_updated_on>2026-05-01 09:30:00</sys_updated_on>
     </sys_user_role>
 </record_update>
-
-<!-- Made with Bob -->

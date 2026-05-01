@@ -5,7 +5,7 @@
         <description>Role for Platform Engineers who manage and maintain the platform infrastructure</description>
         <elevated_privilege>false</elevated_privilege>
         <encryption_context/>
-        <federated_id/>
+        <federated_id>EZAb2tu18OS/5A6Kz4fdjxxo2Vb08N4/kpJRoPZxS54=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>
         <name>x_ibmin_idpbob.platform_engineer</name>
@@ -25,5 +25,3 @@
         <sys_updated_on>2026-05-01 09:30:00</sys_updated_on>
     </sys_user_role>
 </record_update>
-
-<!-- Made with Bob -->

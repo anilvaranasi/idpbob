@@ -1,244 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
     <sp_page action="INSERT_OR_UPDATE">
         <category/>
-        <css>.idp-hero {
-    background: linear-gradient(135deg, var(--carbon-ui-05) 0%, #0353e9 100%);
-    padding: var(--carbon-spacing-10) var(--carbon-spacing-06);
-    color: var(--carbon-text-04);
-    text-align: center;
-    margin-bottom: var(--carbon-spacing-08);
-}
-
-.idp-hero h1 {
-    font-size: 3rem;
-    font-weight: 600;
-    margin-bottom: var(--carbon-spacing-04);
-    color: var(--carbon-text-04);
-}
-
-.idp-hero p {
-    font-size: 1.25rem;
-    max-width: 800px;
-    margin: 0 auto var(--carbon-spacing-06);
-    color: var(--carbon-text-04);
-    opacity: 0.9;
-}
-
-.idp-search-bar {
-    max-width: 600px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.idp-search-bar input {
-    width: 100%;
-    padding: var(--carbon-spacing-04) var(--carbon-spacing-05);
-    font-size: 16px;
-    border: none;
-    background-color: var(--carbon-ui-01);
-    color: var(--carbon-text-01);
-}
-
-.idp-search-bar input:focus {
-    outline: 2px solid var(--carbon-focus);
-    outline-offset: -2px;
-}
-
-.idp-persona-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--carbon-spacing-05);
-    margin-bottom: var(--carbon-spacing-08);
-}
-
-.idp-persona-card {
-    background-color: var(--carbon-ui-01);
-    padding: var(--carbon-spacing-06);
-    border-left: 4px solid var(--carbon-interactive-01);
-    transition: all 0.2s cubic-bezier(0.2, 0, 0.38, 0.9);
-    cursor: pointer;
-}
-
-.idp-persona-card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-}
-
-.idp-persona-card h3 {
-    color: var(--carbon-interactive-01);
-    margin-bottom: var(--carbon-spacing-03);
-    font-size: 1.25rem;
-}
-
-.idp-persona-card p {
-    color: var(--carbon-text-02);
-    margin-bottom: var(--carbon-spacing-04);
-    font-size: 14px;
-}
-
-.idp-persona-card ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.idp-persona-card li {
-    padding: var(--carbon-spacing-02) 0;
-    color: var(--carbon-text-02);
-    font-size: 14px;
-}
-
-.idp-persona-card li:before {
-    content: "→ ";
-    color: var(--carbon-interactive-01);
-    font-weight: 600;
-}
-
-.idp-quick-actions {
-    background-color: var(--carbon-ui-01);
-    padding: var(--carbon-spacing-06);
-    margin-bottom: var(--carbon-spacing-08);
-}
-
-.idp-quick-actions h2 {
-    margin-bottom: var(--carbon-spacing-05);
-    color: var(--carbon-text-01);
-}
-
-.idp-action-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--carbon-spacing-04);
-}
-
-.idp-action-btn {
-    display: flex;
-    align-items: center;
-    gap: var(--carbon-spacing-03);
-    padding: var(--carbon-spacing-04);
-    background-color: var(--carbon-ui-02);
-    border: 1px solid var(--carbon-ui-03);
-    color: var(--carbon-text-01);
-    text-decoration: none;
-    transition: all 0.11s cubic-bezier(0.2, 0, 0.38, 0.9);
-}
-
-.idp-action-btn:hover {
-    background-color: var(--carbon-hover-ui);
-    border-color: var(--carbon-interactive-01);
-    text-decoration: none;
-}
-
-.idp-action-btn i {
-    font-size: 24px;
-    color: var(--carbon-interactive-01);
-}
-
-.idp-resources {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--carbon-spacing-05);
-    margin-bottom: var(--carbon-spacing-08);
-}
-
-.idp-resource-card {
-    background-color: var(--carbon-ui-01);
-    padding: var(--carbon-spacing-06);
-}
-
-.idp-resource-card h3 {
-    color: var(--carbon-text-01);
-    margin-bottom: var(--carbon-spacing-04);
-    display: flex;
-    align-items: center;
-    gap: var(--carbon-spacing-03);
-}
-
-.idp-resource-card h3 i {
-    color: var(--carbon-interactive-01);
-}
-
-.idp-resource-card ul {
-    list-style: none;
-    padding: 0;
-}
-
-.idp-resource-card li {
-    padding: var(--carbon-spacing-02) 0;
-}
-
-.idp-resource-card a {
-    color: var(--carbon-link-01);
-    text-decoration: none;
-}
-
-.idp-resource-card a:hover {
-    color: var(--carbon-hover-primary-text);
-    text-decoration: underline;
-}
-
-.idp-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--carbon-spacing-05);
-    margin-bottom: var(--carbon-spacing-08);
-}
-
-.idp-stat-card {
-    background-color: var(--carbon-ui-01);
-    padding: var(--carbon-spacing-05);
-    text-align: center;
-    border-top: 3px solid var(--carbon-interactive-01);
-}
-
-.idp-stat-number {
-    font-size: 2.5rem;
-    font-weight: 600;
-    color: var(--carbon-interactive-01);
-    margin-bottom: var(--carbon-spacing-02);
-}
-
-.idp-stat-label {
-    color: var(--carbon-text-02);
-    font-size: 14px;
-}
-
-@media (max-width: 768px) {
-    .idp-hero h1 {
-        font-size: 2rem;
-    }
-    
-    .idp-hero p {
-        font-size: 1rem;
-    }
-    
-    .idp-persona-cards,
-    .idp-action-grid,
-    .idp-resources,
-    .idp-stats {
-        grid-template-columns: 1fr;
-    }
-}
-</css>
-        <id>idp_ag_home</id>
+        <css/>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <human_readable_url_structure/>
+        <id>idpbob_home_page</id>
         <internal>false</internal>
+        <omit_watcher>false</omit_watcher>
         <public>false</public>
         <roles/>
-        <short_description>Internal Developer Portal - Self-intuitive homepage for all personas</short_description>
+        <seo_script/>
+        <short_description>IDPBob Portal Home Page</short_description>
         <sys_class_name>sp_page</sys_class_name>
         <sys_created_by>system</sys_created_by>
         <sys_created_on>2026-05-01 09:30:00</sys_created_on>
         <sys_id>3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_name>IDP AG Home</sys_name>
+        <sys_name>IDPBob Home</sys_name>
         <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
         <sys_policy/>
         <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
-        <sys_update_name>sp_page_idp_ag_home</sys_update_name>
+        <sys_update_name>sp_page_idpbob_home_page</sys_update_name>
         <sys_updated_by>system</sys_updated_by>
         <sys_updated_on>2026-05-01 09:30:00</sys_updated_on>
-        <title>Internal Developer Portal</title>
+        <title>IDPBob Home</title>
+        <use_seo_script>false</use_seo_script>
     </sp_page>
+    <sys_translated_text action="delete_multiple" query="documentkey=3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c"/>
 </record_update>
-
-<!-- Made with Bob -->

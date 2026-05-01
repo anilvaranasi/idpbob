@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_header_footer">
     <sp_header_footer action="INSERT_OR_UPDATE">
-        <chrome_template/>
+        <category/>
+        <client_script/>
+        <controller_as/>
         <css>.idpbob-footer {
     background-color: var(--carbon-ui-01);
     border-top: 1px solid var(--carbon-ui-03);
@@ -66,7 +68,34 @@
     }
 }
 </css>
-        <header>false</header>
+        <data_table/>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name/>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script/>
+        <servicenow>false</servicenow>
+        <static>false</static>
+        <sys_class_name>sp_header_footer</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-01 09:30:00</sys_created_on>
+        <sys_id>5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>IDPBob Footer</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sp_header_footer_idpbob_footer</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-01 09:30:00</sys_updated_on>
         <template><![CDATA[<div class="idpbob-footer">
     <div class="container-fluid">
         <div class="row">
@@ -98,19 +127,5 @@
         </div>
     </div>
 </div>]]></template>
-        <sys_class_name>sp_header_footer</sys_class_name>
-        <sys_created_by>system</sys_created_by>
-        <sys_created_on>2026-05-01 09:30:00</sys_created_on>
-        <sys_id>5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>IDPBob Footer</sys_name>
-        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
-        <sys_policy/>
-        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
-        <sys_update_name>sp_header_footer_idpbob_footer</sys_update_name>
-        <sys_updated_by>system</sys_updated_by>
-        <sys_updated_on>2026-05-01 09:30:00</sys_updated_on>
     </sp_header_footer>
 </record_update>
-
-<!-- Made with Bob -->
