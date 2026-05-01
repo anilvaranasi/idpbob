@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role">
+    <sys_user_role action="INSERT_OR_UPDATE">
+        <assignable_by/>
+        <can_delegate>true</can_delegate>
+        <description>Role for Product Owners / Engineering Managers who oversee product development and team management</description>
+        <elevated_privilege>false</elevated_privilege>
+        <encryption_context/>
+        <federated_id/>
+        <grantable>true</grantable>
+        <includes_roles/>
+        <name>x_ibmin_idpbob.product_owner</name>
+        <scoped_admin>false</scoped_admin>
+        <suffix>product_owner</suffix>
+        <sys_class_name>sys_user_role</sys_class_name>
+        <sys_created_by>srinivas.anil.kumar.varanasi@ibm.com</sys_created_by>
+        <sys_created_on>2026-05-01 09:30:00</sys_created_on>
+        <sys_id>a5b5c5d5e5f5a5b5c5d5e5f5a5b5c5d5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_ibmin_idpbob.product_owner</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sys_user_role_product_owner</sys_update_name>
+        <sys_updated_by>srinivas.anil.kumar.varanasi@ibm.com</sys_updated_by>
+        <sys_updated_on>2026-05-01 09:30:00</sys_updated_on>
+    </sys_user_role>
+</record_update>
+
+<!-- Made with Bob -->
