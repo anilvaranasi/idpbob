@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope, $location) {
+    var c = this;
+    
+    // Navigate to persona-specific page
+    c.navigateToPersona = function(personaId) {
+        $location.path('/persona/' + personaId);
+    };
+    
+    // Quick action navigation
+    c.quickAction = function(action) {
+        switch(action) {
+            case 'catalog':
+                $location.path('/catalog');
+                break;
+            case 'knowledge':
+                $location.path('/kb');
+                break;
+            case 'requests':
+                $location.path('/requests');
+                break;
+            case 'docs':
+                $location.path('/documentation');
+                break;
+            case 'apis':
+                $location.path('/api-catalog');
+                break;
+            case 'templates':
+                $location.path('/templates');
+                break;
+            case 'tools':
+                $location.path('/tools');
+                break;
+            case 'support':
+                $location.path('/support');
+                break;
+        }
+    };
+    
+    // Search functionality
+    c.search = function() {
+        if (c.searchQuery) {
+            $location.path('/search').search({q: c.searchQuery});
+        }
+    };
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Internal Developer Portal Homepage Content</description>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>idp_home_content</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+    // Any DOM manipulation if needed
+}]]></link>
+        <name>IDP Home Content</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    // Server-side script
+    data.user = gs.getUser();
+    data.userName = data.user.getDisplayName();
+    data.userInitials = data.user.getInitials();
+    
+    // Get user roles
+    data.userRoles = [];
+    var roles = gs.getUser().getRoles().toString().split(',');
+    data.userRoles = roles;
+    
+    // Determine primary persona based on roles
+    data.primaryPersona = 'developer'; // default
+    if (roles.indexOf('x_ibmin_idpbob.platform_engineer') > -1) {
+        data.primaryPersona = 'platform_engineer';
+    } else if (roles.indexOf('x_ibmin_idpbob.sre') > -1) {
+        data.primaryPersona = 'sre';
+    } else if (roles.indexOf('x_ibmin_idpbob.security_engineer') > -1) {
+        data.primaryPersona = 'security_engineer';
+    } else if (roles.indexOf('x_ibmin_idpbob.product_owner') > -1) {
+        data.primaryPersona = 'product_owner';
+    } else if (roles.indexOf('x_ibmin_idpbob.servicenow_admin') > -1) {
+        data.primaryPersona = 'servicenow_admin';
+    }
+    
+    // Get statistics (mock data - replace with actual queries)
+    data.stats = {
+        activeServices: 127,
+        apiEndpoints: 342,
+        deployments: 89,
+        incidents: 3
+    };
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-01 10:00:00</sys_created_on>
+        <sys_id>6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>IDP Home Content</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sp_widget_idp_home_content</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-01 10:00:00</sys_updated_on>
+        <template><![CDATA[<div class="idp-home-container">
+    <!-- Hero Section -->
+    <div class="idp-hero">
+        <h1>Welcome to the Internal Developer Portal</h1>
+        <p>Your central hub for building, deploying, and managing applications with confidence</p>
+        
+        <!-- Search Bar -->
+        <div class="idp-search-bar">
+            <form ng-submit="c.search()">
+                <input type="text" 
+                       ng-model="c.searchQuery" 
+                       placeholder="Search for services, APIs, documentation, templates..." 
+                       aria-label="Search portal">
+            </form>
+        </div>
+    </div>
+    
+    <div class="container-fluid">
+        <!-- Platform Statistics -->
+        <div class="idp-stats">
+            <div class="idp-stat-card">
+                <div class="idp-stat-number">{{data.stats.activeServices}}</div>
+                <div class="idp-stat-label">Active Services</div>
+            </div>
+            <div class="idp-stat-card">
+                <div class="idp-stat-number">{{data.stats.apiEndpoints}}</div>
+                <div class="idp-stat-label">API Endpoints</div>
+            </div>
+            <div class="idp-stat-card">
+                <div class="idp-stat-number">{{data.stats.deployments}}</div>
+                <div class="idp-stat-label">Deployments Today</div>
+            </div>
+            <div class="idp-stat-card">
+                <div class="idp-stat-number">{{data.stats.incidents}}</div>
+                <div class="idp-stat-label">Open Incidents</div>
+            </div>
+        </div>
+        
+        <!-- Persona Cards -->
+        <h2 style="margin-bottom: var(--carbon-spacing-05); color: var(--carbon-text-01);">Choose Your Path</h2>
+        <div class="idp-persona-cards">
+            <!-- Application Developer -->
+            <div class="idp-persona-card" ng-click="c.navigateToPersona('developer')">
+                <h3><i class="fa fa-code"></i> Application Developer</h3>
+                <p>Build and deploy applications with ease</p>
+                <ul>
+                    <li>Service Catalog</li>
+                    <li>Code Templates</li>
+                    <li>CI/CD Pipelines</li>
+                    <li>Development Tools</li>
+                </ul>
+            </div>
+            
+            <!-- Platform Engineer -->
+            <div class="idp-persona-card" ng-click="c.navigateToPersona('platform')">
+                <h3><i class="fa fa-server"></i> Platform Engineer</h3>
+                <p>Manage infrastructure and platform services</p>
+                <ul>
+                    <li>Infrastructure as Code</li>
+                    <li>Platform Services</li>
+                    <li>Resource Management</li>
+                    <li>Automation Tools</li>
+                </ul>
+            </div>
+            
+            <!-- SRE / Operations -->
+            <div class="idp-persona-card" ng-click="c.navigateToPersona('sre')">
+                <h3><i class="fa fa-heartbeat"></i> SRE / Operations</h3>
+                <p>Ensure reliability and performance</p>
+                <ul>
+                    <li>Monitoring Dashboards</li>
+                    <li>Incident Management</li>
+                    <li>Performance Metrics</li>
+                    <li>On-Call Schedule</li>
+                </ul>
+            </div>
+            
+            <!-- Security Engineer -->
+            <div class="idp-persona-card" ng-click="c.navigateToPersona('security')">
+                <h3><i class="fa fa-shield"></i> Security Engineer</h3>
+                <p>Manage security and compliance</p>
+                <ul>
+                    <li>Security Policies</li>
+                    <li>Vulnerability Scans</li>
+                    <li>Compliance Reports</li>
+                    <li>Access Management</li>
+                </ul>
+            </div>
+            
+            <!-- Product Owner -->
+            <div class="idp-persona-card" ng-click="c.navigateToPersona('product')">
+                <h3><i class="fa fa-users"></i> Product Owner</h3>
+                <p>Oversee product development and delivery</p>
+                <ul>
+                    <li>Project Dashboards</li>
+                    <li>Team Metrics</li>
+                    <li>Release Planning</li>
+                    <li>Stakeholder Reports</li>
+                </ul>
+            </div>
+            
+            <!-- ServiceNow Admin -->
+            <div class="idp-persona-card" ng-click="c.navigateToPersona('admin')">
+                <h3><i class="fa fa-cog"></i> ServiceNow Admin</h3>
+                <p>Configure and manage the platform</p>
+                <ul>
+                    <li>Platform Configuration</li>
+                    <li>User Management</li>
+                    <li>Integration Setup</li>
+                    <li>System Health</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="idp-quick-actions">
+            <h2>Quick Actions</h2>
+            <div class="idp-action-grid">
+                <a href="javascript:void(0)" ng-click="c.quickAction('catalog')" class="idp-action-btn">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>Service Catalog</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.quickAction('apis')" class="idp-action-btn">
+                    <i class="fa fa-plug"></i>
+                    <span>API Catalog</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.quickAction('templates')" class="idp-action-btn">
+                    <i class="fa fa-file-code-o"></i>
+                    <span>Templates</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.quickAction('docs')" class="idp-action-btn">
+                    <i class="fa fa-book"></i>
+                    <span>Documentation</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.quickAction('tools')" class="idp-action-btn">
+                    <i class="fa fa-wrench"></i>
+                    <span>Developer Tools</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.quickAction('requests')" class="idp-action-btn">
+                    <i class="fa fa-ticket"></i>
+                    <span>My Requests</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.quickAction('knowledge')" class="idp-action-btn">
+                    <i class="fa fa-lightbulb-o"></i>
+                    <span>Knowledge Base</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.quickAction('support')" class="idp-action-btn">
+                    <i class="fa fa-life-ring"></i>
+                    <span>Get Support</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Resources -->
+        <div class="idp-resources">
+            <div class="idp-resource-card">
+                <h3><i class="fa fa-rocket"></i> Getting Started</h3>
+                <ul>
+                    <li><a href="#">Quick Start Guide</a></li>
+                    <li><a href="#">Platform Overview</a></li>
+                    <li><a href="#">Best Practices</a></li>
+                    <li><a href="#">Video Tutorials</a></li>
+                </ul>
+            </div>
+            
+            <div class="idp-resource-card">
+                <h3><i class="fa fa-graduation-cap"></i> Learning Resources</h3>
+                <ul>
+                    <li><a href="#">Training Courses</a></li>
+                    <li><a href="#">Certification Paths</a></li>
+                    <li><a href="#">Workshops & Labs</a></li>
+                    <li><a href="#">Community Forums</a></li>
+                </ul>
+            </div>
+            
+            <div class="idp-resource-card">
+                <h3><i class="fa fa-bullhorn"></i> Latest Updates</h3>
+                <ul>
+                    <li><a href="#">Platform Release Notes</a></li>
+                    <li><a href="#">New Features</a></li>
+                    <li><a href="#">Maintenance Schedule</a></li>
+                    <li><a href="#">Announcements</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
+
+<!-- Made with Bob -->

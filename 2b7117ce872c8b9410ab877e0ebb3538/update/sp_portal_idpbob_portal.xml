@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_portal">
     <sp_portal action="INSERT_OR_UPDATE">
         <enable_sp_context_search>false</enable_sp_context_search>
-        <homepage display_value="IDPBob Home">idpbob_home_page</homepage>
+        <homepage display_value="IDP AG Home">idp_ag_home</homepage>
         <kb_knowledge_base/>
         <login_page/>
         <logo/>
