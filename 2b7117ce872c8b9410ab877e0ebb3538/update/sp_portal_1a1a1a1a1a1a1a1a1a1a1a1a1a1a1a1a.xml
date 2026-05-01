@@ -19,7 +19,7 @@
         <notfound_page/>
         <quick_start_config/>
         <rtl_enabled>false</rtl_enabled>
-        <sc_catalog/>
+        <sc_catalog display_value="IDP Service Catalog">c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1</sc_catalog>
         <sc_catalog_page/>
         <sc_category_page/>
         <search_application/>
