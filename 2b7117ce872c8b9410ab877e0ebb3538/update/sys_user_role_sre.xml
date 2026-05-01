@@ -5,7 +5,7 @@
         <description>Role for Site Reliability Engineers (SRE) / Operations Engineers who ensure system reliability and performance</description>
         <elevated_privilege>false</elevated_privilege>
         <encryption_context/>
-        <federated_id/>
+        <federated_id>KXboawvbBnYgXDRoODGb/xI/FS00VPn8i9Zw+/MDpKM=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>
         <name>x_ibmin_idpbob.sre</name>
@@ -25,5 +25,3 @@
         <sys_updated_on>2026-05-01 09:30:00</sys_updated_on>
     </sys_user_role>
 </record_update>
-
-<!-- Made with Bob -->

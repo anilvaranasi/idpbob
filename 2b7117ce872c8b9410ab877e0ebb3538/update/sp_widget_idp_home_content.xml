@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
+        <category/>
         <client_script><![CDATA[function($scope, $location) {
     var c = this;
     
@@ -297,5 +298,3 @@
 </div>]]></template>
     </sp_widget>
 </record_update>
-
-<!-- Made with Bob -->
