@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_header_footer">
+    <sp_header_footer action="INSERT_OR_UPDATE">
+        <chrome_template/>
+        <css>.idpbob-header {
+    background-color: var(--carbon-ui-05);
+    padding: var(--carbon-spacing-04) var(--carbon-spacing-06);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.idpbob-header-brand {
+    color: var(--carbon-text-04);
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.idpbob-header-brand:hover {
+    color: var(--carbon-text-04);
+    text-decoration: none;
+}
+
+.idpbob-header-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-05);
+}
+
+.idpbob-header-nav-item {
+    color: var(--carbon-text-04);
+    padding: var(--carbon-spacing-03) var(--carbon-spacing-04);
+    text-decoration: none;
+    transition: background-color 0.11s cubic-bezier(0.2, 0, 0.38, 0.9);
+}
+
+.idpbob-header-nav-item:hover {
+    background-color: var(--carbon-hover-secondary);
+    color: var(--carbon-text-04);
+    text-decoration: none;
+}
+
+.idpbob-header-nav-item.active {
+    background-color: var(--carbon-interactive-01);
+    color: var(--carbon-text-04);
+}
+
+.idpbob-header-user {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-03);
+    color: var(--carbon-text-04);
+}
+
+.idpbob-header-user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--carbon-interactive-01);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--carbon-text-04);
+    font-weight: 600;
+}
+</css>
+        <header>true</header>
+        <template><![CDATA[<div class="idpbob-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="idpbob-header-nav">
+                    <a href="?id=idpbob_home_page" class="idpbob-header-brand">
+                        IDPBob Portal
+                    </a>
+                    <a href="?id=idpbob_home_page" class="idpbob-header-nav-item active">
+                        Home
+                    </a>
+                    <a href="?id=catalog" class="idpbob-header-nav-item">
+                        Catalog
+                    </a>
+                    <a href="?id=kb_home" class="idpbob-header-nav-item">
+                        Knowledge
+                    </a>
+                    <a href="?id=my_requests" class="idpbob-header-nav-item">
+                        My Requests
+                    </a>
+                    <div class="idpbob-header-user">
+                        <div class="idpbob-header-user-avatar">
+                            {{user.initials}}
+                        </div>
+                        <span>{{user.name}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>]]></template>
+        <sys_class_name>sp_header_footer</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-01 09:30:00</sys_created_on>
+        <sys_id>4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>IDPBob Header</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sp_header_footer_idpbob_header</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-01 09:30:00</sys_updated_on>
+    </sp_header_footer>
+</record_update>
+
+<!-- Made with Bob -->
