@@ -69,10 +69,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="idpbob-header-nav">
-                    <a href="?id=idpbob_home_page" class="idpbob-header-brand">
+                    <a href="?id=idp_ag_home" class="idpbob-header-brand">
                         IDPBob Portal
                     </a>
-                    <a href="?id=idpbob_home_page" class="idpbob-header-nav-item active">
+                    <a href="?id=idp_ag_home" class="idpbob-header-nav-item active">
                         Home
                     </a>
                     <a href="?id=catalog" class="idpbob-header-nav-item">
