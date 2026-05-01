@@ -440,6 +440,7 @@ button:focus, a:focus {
 .carbon-text-03 { color: var(--carbon-text-03); }
 .carbon-text-04 { color: var(--carbon-text-04); }
 </content>
+        <name>idpbob_carbon_theme</name>
         <sys_class_name>sp_theme</sys_class_name>
         <sys_created_by>system</sys_created_by>
         <sys_created_on>2026-05-01 09:30:00</sys_created_on>
