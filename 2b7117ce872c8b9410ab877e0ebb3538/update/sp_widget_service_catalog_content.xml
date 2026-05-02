@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script><![CDATA[function($scope, $location, spModal) {
+    var c = this;
+    
+    // Filter catalog items by category
+    c.filterByCategory = function(categoryId) {
+        c.selectedCategory = categoryId;
+        c.filteredItems = c.data.catalogItems.filter(function(item) {
+            return !categoryId || item.category === categoryId;
+        });
+    };
+    
+    // Search catalog items
+    c.searchCatalog = function() {
+        if (!c.searchQuery) {
+            c.filteredItems = c.data.catalogItems;
+            return;
+        }
+        
+        var query = c.searchQuery.toLowerCase();
+        c.filteredItems = c.data.catalogItems.filter(function(item) {
+            return item.name.toLowerCase().indexOf(query) > -1 ||
+                   item.description.toLowerCase().indexOf(query) > -1 ||
+                   item.tags.toLowerCase().indexOf(query) > -1;
+        });
+    };
+    
+    // Navigate to catalog item
+    c.orderItem = function(itemId) {
+        $location.path('/sc_cat_item').search({sys_id: itemId});
+    };
+    
+    // Initialize
+    c.selectedCategory = null;
+    c.filteredItems = c.data.catalogItems;
+    c.searchQuery = '';
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css><![CDATA[.service-catalog-container {
+    padding: var(--carbon-spacing-05);
+}
+
+.catalog-header {
+    background: var(--carbon-ui-01);
+    padding: var(--carbon-spacing-07) var(--carbon-spacing-05);
+    margin-bottom: var(--carbon-spacing-05);
+    border-radius: 4px;
+}
+
+.catalog-header h1 {
+    color: var(--carbon-text-01);
+    font-size: 2rem;
+    margin-bottom: var(--carbon-spacing-03);
+}
+
+.catalog-search {
+    margin-top: var(--carbon-spacing-05);
+}
+
+.catalog-search input {
+    width: 100%;
+    max-width: 600px;
+    padding: var(--carbon-spacing-04);
+    border: 1px solid var(--carbon-ui-04);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.catalog-categories {
+    display: flex;
+    gap: var(--carbon-spacing-03);
+    margin-bottom: var(--carbon-spacing-05);
+    flex-wrap: wrap;
+}
+
+.category-chip {
+    padding: var(--carbon-spacing-03) var(--carbon-spacing-05);
+    background: var(--carbon-ui-02);
+    border: 1px solid var(--carbon-ui-04);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--carbon-text-01);
+}
+
+.category-chip:hover {
+    background: var(--carbon-ui-03);
+    border-color: var(--carbon-interactive-01);
+}
+
+.category-chip.active {
+    background: var(--carbon-interactive-01);
+    color: white;
+    border-color: var(--carbon-interactive-01);
+}
+
+.catalog-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--carbon-spacing-05);
+}
+
+.catalog-item-card {
+    background: var(--carbon-ui-01);
+    border: 1px solid var(--carbon-ui-04);
+    border-radius: 4px;
+    padding: var(--carbon-spacing-05);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.catalog-item-card:hover {
+    border-color: var(--carbon-interactive-01);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.catalog-item-header {
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-03);
+    margin-bottom: var(--carbon-spacing-04);
+}
+
+.catalog-item-icon {
+    font-size: 1.5rem;
+    color: var(--carbon-interactive-01);
+}
+
+.catalog-item-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--carbon-text-01);
+    margin: 0;
+}
+
+.catalog-item-description {
+    color: var(--carbon-text-02);
+    margin-bottom: var(--carbon-spacing-04);
+    line-height: 1.5;
+}
+
+.catalog-item-meta {
+    display: flex;
+    gap: var(--carbon-spacing-05);
+    font-size: 0.875rem;
+    color: var(--carbon-text-02);
+    margin-bottom: var(--carbon-spacing-04);
+}
+
+.catalog-item-tags {
+    display: flex;
+    gap: var(--carbon-spacing-02);
+    flex-wrap: wrap;
+}
+
+.catalog-tag {
+    padding: 2px 8px;
+    background: var(--carbon-ui-03);
+    border-radius: 3px;
+    font-size: 0.75rem;
+    color: var(--carbon-text-02);
+}
+
+.catalog-item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--carbon-spacing-04);
+    padding-top: var(--carbon-spacing-04);
+    border-top: 1px solid var(--carbon-ui-04);
+}
+
+.catalog-item-sla {
+    font-size: 0.875rem;
+    color: var(--carbon-text-02);
+}
+
+.catalog-order-btn {
+    padding: var(--carbon-spacing-03) var(--carbon-spacing-05);
+    background: var(--carbon-interactive-01);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.catalog-order-btn:hover {
+    background: var(--carbon-interactive-01-hover);
+}
+
+.no-results {
+    text-align: center;
+    padding: var(--carbon-spacing-07);
+    color: var(--carbon-text-02);
+}
+
+.category-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    background: var(--carbon-ui-03);
+    border-radius: 3px;
+    font-size: 0.75rem;
+    color: var(--carbon-text-02);
+    margin-bottom: var(--carbon-spacing-03);
+}]]></css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Service Catalog Content Widget - Display IDP catalog items</description>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>service_catalog_content</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+    // Any DOM manipulation if needed
+}]]></link>
+        <name>Service Catalog Content</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    // Get catalog categories
+    data.categories = [];
+    var grCategory = new GlideRecord('sc_category');
+    grCategory.addQuery('sc_catalog', 'c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1'); // IDP Service Catalog
+    grCategory.orderBy('order');
+    grCategory.query();
+    
+    while (grCategory.next()) {
+        data.categories.push({
+            id: grCategory.getUniqueValue(),
+            name: grCategory.getValue('title'),
+            description: grCategory.getValue('description'),
+            icon: grCategory.getValue('icon')
+        });
+    }
+    
+    // Get catalog items
+    data.catalogItems = [];
+    var grItem = new GlideRecord('sc_cat_item');
+    grItem.addQuery('sc_catalogs', 'c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1'); // IDP Service Catalog
+    grItem.addQuery('active', true);
+    grItem.orderBy('order');
+    grItem.query();
+    
+    while (grItem.next()) {
+        // Extract SLA from description
+        var description = grItem.getValue('description') || '';
+        var slaMatch = description.match(/Fulfillment Time:<\/strong>\s*([^<]+)/);
+        var sla = slaMatch ? slaMatch[1].trim() : 'Standard SLA';
+        
+        // Extract tags from description
+        var tagsMatch = description.match(/Tags:<\/h4>\s*<p>([^<]+)/);
+        var tags = tagsMatch ? tagsMatch[1].trim() : '';
+        
+        // Get category name
+        var categoryId = grItem.getValue('category');
+        var categoryName = '';
+        if (categoryId) {
+            var grCat = new GlideRecord('sc_category');
+            if (grCat.get(categoryId)) {
+                categoryName = grCat.getValue('title');
+            }
+        }
+        
+        data.catalogItems.push({
+            id: grItem.getUniqueValue(),
+            name: grItem.getValue('name'),
+            shortDescription: grItem.getValue('short_description'),
+            description: grItem.getValue('description'),
+            category: categoryId,
+            categoryName: categoryName,
+            icon: grItem.getValue('icon') || 'service',
+            sla: sla,
+            tags: tags,
+            roles: grItem.getValue('roles')
+        });
+    }
+    
+    // Get user info
+    data.userName = gs.getUser().getDisplayName();
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-02 06:55:00</sys_created_on>
+        <sys_id>c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Service Catalog Content</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sp_widget_service_catalog_content</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-02 06:55:00</sys_updated_on>
+        <template><![CDATA[<div class="service-catalog-container">
+    <!-- Header -->
+    <div class="catalog-header">
+        <h1><i class="fa fa-shopping-cart"></i> Service Catalog</h1>
+        <p>Request platform resources, services, and tools for your development needs</p>
+        
+        <!-- Search -->
+        <div class="catalog-search">
+            <input type="text" 
+                   ng-model="c.searchQuery" 
+                   ng-change="c.searchCatalog()"
+                   placeholder="Search catalog items by name, description, or tags..."
+                   aria-label="Search catalog">
+        </div>
+    </div>
+    
+    <!-- Category Filters -->
+    <div class="catalog-categories">
+        <div class="category-chip" 
+             ng-class="{active: !c.selectedCategory}"
+             ng-click="c.filterByCategory(null)">
+            <i class="fa fa-th"></i> All Services
+        </div>
+        <div class="category-chip" 
+             ng-repeat="category in data.categories"
+             ng-class="{active: c.selectedCategory === category.id}"
+             ng-click="c.filterByCategory(category.id)">
+            <i class="fa fa-{{category.icon}}"></i> {{category.name}}
+        </div>
+    </div>
+    
+    <!-- Catalog Items Grid -->
+    <div class="catalog-items-grid" ng-if="c.filteredItems.length > 0">
+        <div class="catalog-item-card" 
+             ng-repeat="item in c.filteredItems"
+             ng-click="c.orderItem(item.id)">
+            
+            <div class="category-badge">{{item.categoryName}}</div>
+            
+            <div class="catalog-item-header">
+                <i class="fa fa-{{item.icon}} catalog-item-icon"></i>
+                <h3 class="catalog-item-title">{{item.name}}</h3>
+            </div>
+            
+            <p class="catalog-item-description">{{item.shortDescription}}</p>
+            
+            <div class="catalog-item-tags" ng-if="item.tags">
+                <span class="catalog-tag" ng-repeat="tag in item.tags.split(',')">
+                    {{tag.trim()}}
+                </span>
+            </div>
+            
+            <div class="catalog-item-footer">
+                <div class="catalog-item-sla">
+                    <i class="fa fa-clock-o"></i> {{item.sla}}
+                </div>
+                <button class="catalog-order-btn">
+                    Request <i class="fa fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- No Results -->
+    <div class="no-results" ng-if="c.filteredItems.length === 0">
+        <i class="fa fa-search" style="font-size: 3rem; color: var(--carbon-text-03); margin-bottom: var(--carbon-spacing-04);"></i>
+        <h3>No catalog items found</h3>
+        <p>Try adjusting your search or filter criteria</p>
+    </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
+
+<!-- Made with Bob -->

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script><![CDATA[function($scope, $location) {
+    var c = this;
+    
+    c.navigateTo = function(path) {
+        $location.path(path);
+    };
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css><![CDATA[.product-dashboard {
+    padding: var(--carbon-spacing-05);
+}
+
+.dashboard-header {
+    margin-bottom: var(--carbon-spacing-06);
+}
+
+.dashboard-header h1 {
+    color: var(--carbon-text-01);
+    font-size: 2rem;
+    margin-bottom: var(--carbon-spacing-03);
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-03);
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--carbon-spacing-05);
+    margin-bottom: var(--carbon-spacing-06);
+}
+
+.dashboard-card {
+    background: var(--carbon-ui-01);
+    border: 1px solid var(--carbon-ui-03);
+    border-radius: 4px;
+    padding: var(--carbon-spacing-05);
+}
+
+.dashboard-card h2 {
+    color: var(--carbon-text-01);
+    font-size: 1.25rem;
+    margin-bottom: var(--carbon-spacing-04);
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-03);
+}
+
+.quick-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--carbon-spacing-03);
+}
+
+.quick-link {
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-03);
+    padding: var(--carbon-spacing-03);
+    background: var(--carbon-ui-background);
+    border: 1px solid var(--carbon-ui-03);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: var(--carbon-text-01);
+}
+
+.quick-link:hover {
+    border-color: var(--carbon-interactive-01);
+    background: var(--carbon-hover-ui);
+}
+
+.metric-card {
+    background: var(--carbon-ui-background);
+    border: 1px solid var(--carbon-ui-03);
+    border-radius: 4px;
+    padding: var(--carbon-spacing-04);
+    text-align: center;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--carbon-text-01);
+}
+
+.metric-label {
+    font-size: 0.875rem;
+    color: var(--carbon-text-02);
+    margin-top: var(--carbon-spacing-02);
+}]]></css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Product Owner Dashboard Widget</description>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>product_dashboard</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {}]]></link>
+        <name>Product Dashboard</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_ibmin_idpbob.product_owner</roles>
+        <script><![CDATA[(function() {
+    data.user = gs.getUser();
+    data.userName = data.user.getDisplayName();
+    
+    // Product metrics (mock data - replace with actual queries)
+    data.metrics = {
+        activeProjects: 12,
+        teamVelocity: 85,
+        pendingApprovals: 7,
+        upcomingReleases: 3
+    };
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-02 06:30:00</sys_created_on>
+        <sys_id>d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Product Dashboard</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sp_widget_product_dashboard</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-02 06:30:00</sys_updated_on>
+        <template><![CDATA[<div class="product-dashboard">
+    <div class="dashboard-header">
+        <h1>
+            <i class="fa fa-users"></i>
+            Product Owner Portal
+        </h1>
+        <p>Welcome back, {{data.userName}}! Oversee product development and delivery.</p>
+    </div>
+    
+    <!-- Product Metrics -->
+    <div class="dashboard-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: var(--carbon-spacing-05);">
+        <div class="metric-card">
+            <div class="metric-value">{{data.metrics.activeProjects}}</div>
+            <div class="metric-label">Active Projects</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">{{data.metrics.teamVelocity}}%</div>
+            <div class="metric-label">Team Velocity</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">{{data.metrics.pendingApprovals}}</div>
+            <div class="metric-label">Pending Approvals</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">{{data.metrics.upcomingReleases}}</div>
+            <div class="metric-label">Upcoming Releases</div>
+        </div>
+    </div>
+    
+    <div class="dashboard-grid">
+        <!-- Project Management -->
+        <div class="dashboard-card">
+            <h2><i class="fa fa-tasks"></i> Project Management</h2>
+            <div class="quick-links">
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/projects')" class="quick-link">
+                    <i class="fa fa-folder-open"></i>
+                    <span>All Projects</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/project/create')" class="quick-link">
+                    <i class="fa fa-plus-circle"></i>
+                    <span>Create Project</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/roadmap')" class="quick-link">
+                    <i class="fa fa-map"></i>
+                    <span>Product Roadmap</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/backlog')" class="quick-link">
+                    <i class="fa fa-list"></i>
+                    <span>Product Backlog</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Team Metrics -->
+        <div class="dashboard-card">
+            <h2><i class="fa fa-bar-chart"></i> Team Metrics</h2>
+            <div class="quick-links">
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/velocity')" class="quick-link">
+                    <i class="fa fa-line-chart"></i>
+                    <span>Velocity Tracking</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/burndown')" class="quick-link">
+                    <i class="fa fa-area-chart"></i>
+                    <span>Burndown Charts</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/capacity')" class="quick-link">
+                    <i class="fa fa-users"></i>
+                    <span>Team Capacity</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/performance')" class="quick-link">
+                    <i class="fa fa-trophy"></i>
+                    <span>Performance Metrics</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Release Planning -->
+        <div class="dashboard-card">
+            <h2><i class="fa fa-rocket"></i> Release Planning</h2>
+            <div class="quick-links">
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/releases')" class="quick-link">
+                    <i class="fa fa-calendar"></i>
+                    <span>Release Calendar</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/release/plan')" class="quick-link">
+                    <i class="fa fa-sitemap"></i>
+                    <span>Release Planning</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/deployments')" class="quick-link">
+                    <i class="fa fa-upload"></i>
+                    <span>Deployment Status</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/release-notes')" class="quick-link">
+                    <i class="fa fa-file-text"></i>
+                    <span>Release Notes</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Approvals & Reviews -->
+        <div class="dashboard-card">
+            <h2><i class="fa fa-check-square"></i> Approvals & Reviews</h2>
+            <div class="quick-links">
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/approvals')" class="quick-link">
+                    <i class="fa fa-thumbs-up"></i>
+                    <span>Pending Approvals</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/change-requests')" class="quick-link">
+                    <i class="fa fa-exchange"></i>
+                    <span>Change Requests</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/code-reviews')" class="quick-link">
+                    <i class="fa fa-code"></i>
+                    <span>Code Reviews</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/design-reviews')" class="quick-link">
+                    <i class="fa fa-paint-brush"></i>
+                    <span>Design Reviews</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Stakeholder Reports -->
+        <div class="dashboard-card">
+            <h2><i class="fa fa-file-pdf-o"></i> Stakeholder Reports</h2>
+            <div class="quick-links">
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/executive-dashboard')" class="quick-link">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Executive Dashboard</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/status-reports')" class="quick-link">
+                    <i class="fa fa-file-text-o"></i>
+                    <span>Status Reports</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/budget')" class="quick-link">
+                    <i class="fa fa-dollar"></i>
+                    <span>Budget Overview</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/roi')" class="quick-link">
+                    <i class="fa fa-line-chart"></i>
+                    <span>ROI Analysis</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Demand Intake -->
+        <div class="dashboard-card">
+            <h2><i class="fa fa-inbox"></i> Demand Intake</h2>
+            <div class="quick-links">
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/demand')" class="quick-link">
+                    <i class="fa fa-list-alt"></i>
+                    <span>All Requests</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/prioritization')" class="quick-link">
+                    <i class="fa fa-sort-amount-desc"></i>
+                    <span>Prioritization</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/feasibility')" class="quick-link">
+                    <i class="fa fa-question-circle"></i>
+                    <span>Feasibility Analysis</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/intake-form')" class="quick-link">
+                    <i class="fa fa-wpforms"></i>
+                    <span>Intake Form</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
+
+<!-- Made with Bob -->

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category/>
-        <client_script><![CDATA[function($scope, $location) {
+        <client_script><![CDATA[function($scope, $location, $window) {
     var c = this;
     
     // Navigate to persona-specific page
     c.navigateToPersona = function(personaId) {
-        $location.path('/persona/' + personaId);
+        $location.path('/' + personaId);
     };
     
     // Quick action navigation
     c.quickAction = function(action) {
         switch(action) {
             case 'catalog':
-                $location.path('/catalog');
+                $location.path('/sc');
                 break;
             case 'knowledge':
                 $location.path('/kb');

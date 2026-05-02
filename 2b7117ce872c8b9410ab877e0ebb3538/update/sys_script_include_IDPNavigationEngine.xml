@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_ibmin_idpbob.IDPNavigationEngine</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Capability-Driven Navigation Engine - Resolves user navigation based on Role → Capability → Taxonomy → UI abstraction model</description>
+        <name>IDPNavigationEngine</name>
+        <script><![CDATA[var IDPNavigationEngine = Class.create();
+IDPNavigationEngine.prototype = {
+    initialize: function() {
+        this.userId = gs.getUserID();
+        this.userRoles = [];
+        this.capabilities = [];
+        this.taxonomyNodes = [];
+        this.navigationTree = {};
+    },
+
+    /**
+     * Main entry point - Get navigation for current user
+     * @returns {Object} Navigation tree grouped by taxonomy
+     */
+    getNavigation: function() {
+        this._fetchUserRoles();
+        this._resolveCapabilities();
+        this._resolveTaxonomy();
+        this._buildNavigationTree();
+        return this.navigationTree;
+    },
+
+    /**
+     * Get user roles
+     * @private
+     */
+    _fetchUserRoles: function() {
+        var gr = new GlideRecord('sys_user_has_role');
+        gr.addQuery('user', this.userId);
+        gr.query();
+        
+        while (gr.next()) {
+            this.userRoles.push(gr.role.toString());
+        }
+    },
+
+    /**
+     * Resolve capabilities from roles
+     * @private
+     */
+    _resolveCapabilities: function() {
+        if (this.userRoles.length === 0) return;
+        
+        var gr = new GlideRecord('x_ibmin_idpbob_u_role_capability_map');
+        gr.addQuery('role', 'IN', this.userRoles.join(','));
+        gr.addQuery('active', true);
+        gr.query();
+        
+        var capabilityIds = [];
+        while (gr.next()) {
+            var capId = gr.capability.toString();
+            if (capabilityIds.indexOf(capId) === -1) {
+                capabilityIds.push(capId);
+            }
+        }
+        
+        // Get capability details
+        if (capabilityIds.length > 0) {
+            var grCap = new GlideRecord('x_ibmin_idpbob_u_idp_capability');
+            grCap.addQuery('sys_id', 'IN', capabilityIds.join(','));
+            grCap.addQuery('active', true);
+            grCap.query();
+            
+            while (grCap.next()) {
+                this.capabilities.push({
+                    id: grCap.sys_id.toString(),
+                    capability_id: grCap.capability_id.toString(),
+                    name: grCap.name.toString(),
+                    icon: grCap.getValue('icon') ? grCap.icon.toString() : 'circle'
+                });
+            }
+        }
+    },
+
+    /**
+     * Resolve taxonomy nodes from capabilities
+     * @private
+     */
+    _resolveTaxonomy: function() {
+        if (this.capabilities.length === 0) return;
+        
+        var capIds = [];
+        for (var i = 0; i < this.capabilities.length; i++) {
+            capIds.push(this.capabilities[i].id);
+        }
+        
+        var gr = new GlideRecord('x_ibmin_idpbob_u_capability_taxonomy_map');
+        gr.addQuery('capability', 'IN', capIds.join(','));
+        gr.addQuery('active', true);
+        gr.orderBy('order');
+        gr.query();
+        
+        while (gr.next()) {
+            var node = gr.taxonomy_node.toString();
+            if (this.taxonomyNodes.indexOf(node) === -1) {
+                this.taxonomyNodes.push(node);
+            }
+        }
+    },
+
+    /**
+     * Build navigation tree grouped by taxonomy
+     * @private
+     */
+    _buildNavigationTree: function() {
+        if (this.taxonomyNodes.length === 0) return;
+        
+        // Initialize taxonomy nodes
+        for (var i = 0; i < this.taxonomyNodes.length; i++) {
+            this.navigationTree[this.taxonomyNodes[i]] = [];
+        }
+        
+        // Get navigation items
+        var capIds = [];
+        for (var j = 0; j < this.capabilities.length; j++) {
+            capIds.push(this.capabilities[j].id);
+        }
+        
+        var gr = new GlideRecord('x_ibmin_idpbob_u_navigation_item');
+        gr.addQuery('active', true);
+        gr.orderBy('order');
+        gr.query();
+        
+        while (gr.next()) {
+            var requiredCaps = gr.required_capabilities.toString().split(',');
+            var hasAccess = this._checkCapabilityAccess(requiredCaps, capIds);
+            
+            if (hasAccess) {
+                var taxonomyNode = gr.taxonomy_node.toString();
+                if (this.navigationTree[taxonomyNode]) {
+                    this.navigationTree[taxonomyNode].push({
+                        name: gr.name.toString(),
+                        url: gr.url.toString(),
+                        icon: gr.getValue('icon') ? gr.icon.toString() : 'circle',
+                        description: gr.getValue('description') ? gr.description.toString() : ''
+                    });
+                }
+            }
+        }
+        
+        // Remove empty taxonomy nodes
+        for (var node in this.navigationTree) {
+            if (this.navigationTree[node].length === 0) {
+                delete this.navigationTree[node];
+            }
+        }
+    },
+
+    /**
+     * Check if user has required capabilities
+     * @private
+     */
+    _checkCapabilityAccess: function(requiredCaps, userCaps) {
+        if (!requiredCaps || requiredCaps.length === 0) return true;
+        
+        for (var i = 0; i < requiredCaps.length; i++) {
+            if (requiredCaps[i] && userCaps.indexOf(requiredCaps[i]) === -1) {
+                return false;
+            }
+        }
+        return true;
+    },
+
+    /**
+     * Check if user has specific capability
+     * @param {String} capabilityId - Capability ID to check
+     * @returns {Boolean}
+     */
+    hasCapability: function(capabilityId) {
+        if (this.capabilities.length === 0) {
+            this._fetchUserRoles();
+            this._resolveCapabilities();
+        }
+        
+        for (var i = 0; i < this.capabilities.length; i++) {
+            if (this.capabilities[i].capability_id === capabilityId) {
+                return true;
+            }
+        }
+        return false;
+    },
+
+    /**
+     * Get all user capabilities
+     * @returns {Array}
+     */
+    getUserCapabilities: function() {
+        if (this.capabilities.length === 0) {
+            this._fetchUserRoles();
+            this._resolveCapabilities();
+        }
+        return this.capabilities;
+    },
+
+    /**
+     * Get navigation for specific taxonomy node
+     * @param {String} taxonomyNode - Taxonomy node name
+     * @returns {Array}
+     */
+    getNavigationByTaxonomy: function(taxonomyNode) {
+        if (Object.keys(this.navigationTree).length === 0) {
+            this.getNavigation();
+        }
+        return this.navigationTree[taxonomyNode] || [];
+    },
+
+    /**
+     * Check if user has access to taxonomy node
+     * @param {String} taxonomyNode - Taxonomy node name
+     * @returns {Boolean}
+     */
+    hasTaxonomyAccess: function(taxonomyNode) {
+        if (this.taxonomyNodes.length === 0) {
+            this._fetchUserRoles();
+            this._resolveCapabilities();
+            this._resolveTaxonomy();
+        }
+        return this.taxonomyNodes.indexOf(taxonomyNode) > -1;
+    },
+
+    type: 'IDPNavigationEngine'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-02 07:03:00</sys_created_on>
+        <sys_id>f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>IDPNavigationEngine</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sys_script_include_IDPNavigationEngine</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-02 07:03:00</sys_updated_on>
+    </sys_script_include>
+</record_update>
+
+<!-- Made with Bob -->

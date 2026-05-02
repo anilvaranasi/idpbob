@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script><![CDATA[function($scope, $location) {
+    var c = this;
+    
+    // Navigate to persona-specific page
+    c.navigateToPersona = function(personaId) {
+        $location.path('/' + personaId);
+    };
+    
+    // Hero quick actions
+    c.heroAction = function(action) {
+        switch(action) {
+            case 'request_service':
+                $location.path('/service_catalog');
+                break;
+            case 'deploy_app':
+                $location.path('/deploy');
+                break;
+            case 'view_pipelines':
+                $location.path('/pipelines');
+                break;
+            case 'system_health':
+                $location.path('/health');
+                break;
+        }
+    };
+    
+    // Quick links navigation
+    c.quickLink = function(link) {
+        switch(link) {
+            case 'gitlab':
+                $location.path('/gitlab-pipelines');
+                break;
+            case 'catalog':
+                $location.path('/service_catalog');
+                break;
+            case 'api_explorer':
+                $location.path('/api-explorer');
+                break;
+            case 'observability':
+                $location.path('/observability');
+                break;
+        }
+    };
+    
+    // View more in insights
+    c.viewMore = function(type) {
+        switch(type) {
+            case 'deployments':
+                $location.path('/deployments');
+                break;
+            case 'incidents':
+                $location.path('/incidents');
+                break;
+            case 'approvals':
+                $location.path('/approvals');
+                break;
+            case 'security':
+                $location.path('/security-findings');
+                break;
+        }
+    };
+    
+    // AI Assistant (placeholder)
+    c.openAI = function() {
+        // Future: Open AI assistant modal or panel
+        alert('Platform AI Assistant - Coming Soon!');
+    };
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css><![CDATA[/* IBM Carbon Design System - Home Page */
+.idp-bob-home {
+    background: var(--carbon-ui-background);
+    min-height: 100vh;
+}
+
+/* Hero Section */
+.idp-hero-section {
+    background: linear-gradient(135deg, var(--carbon-ui-05) 0%, var(--carbon-ui-04) 100%);
+    padding: var(--carbon-spacing-09) var(--carbon-spacing-06);
+    margin-bottom: var(--carbon-spacing-07);
+}
+
+.idp-hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.idp-hero-welcome {
+    color: var(--carbon-text-04);
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: var(--carbon-spacing-03);
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.idp-hero-subtitle {
+    color: var(--carbon-text-04);
+    font-size: 1.125rem;
+    margin-bottom: var(--carbon-spacing-07);
+    opacity: 0.9;
+}
+
+.idp-hero-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--carbon-spacing-05);
+    max-width: 900px;
+}
+
+.idp-hero-btn {
+    background: var(--carbon-interactive-01);
+    color: var(--carbon-text-04);
+    border: none;
+    padding: var(--carbon-spacing-05);
+    border-radius: 0;
+    cursor: pointer;
+    transition: background 0.11s cubic-bezier(0.2, 0, 0.38, 0.9);
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-04);
+}
+
+.idp-hero-btn:hover {
+    background: var(--carbon-hover-primary);
+}
+
+.idp-hero-btn i {
+    font-size: 1.5rem;
+}
+
+.idp-hero-btn-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.idp-hero-btn-title {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.idp-hero-btn-desc {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+/* Main Content */
+.idp-main-content {
+    max-width: 1584px;
+    margin: 0 auto;
+    padding: 0 var(--carbon-spacing-06);
+}
+
+/* Persona Tiles */
+.idp-persona-section {
+    margin-bottom: var(--carbon-spacing-09);
+}
+
+.idp-section-title {
+    color: var(--carbon-text-01);
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin-bottom: var(--carbon-spacing-06);
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.idp-persona-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--carbon-spacing-05);
+}
+
+.idp-persona-tile {
+    background: var(--carbon-ui-01);
+    border: 1px solid var(--carbon-ui-03);
+    padding: var(--carbon-spacing-06);
+    cursor: pointer;
+    transition: all 0.11s cubic-bezier(0.2, 0, 0.38, 0.9);
+    position: relative;
+}
+
+.idp-persona-tile:hover {
+    background: var(--carbon-hover-ui);
+    border-color: var(--carbon-interactive-01);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.idp-persona-tile-icon {
+    font-size: 2rem;
+    color: var(--carbon-interactive-01);
+    margin-bottom: var(--carbon-spacing-04);
+}
+
+.idp-persona-tile-title {
+    color: var(--carbon-text-01);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: var(--carbon-spacing-03);
+}
+
+.idp-persona-tile-desc {
+    color: var(--carbon-text-02);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Insights Panel */
+.idp-insights-section {
+    margin-bottom: var(--carbon-spacing-09);
+}
+
+.idp-insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--carbon-spacing-05);
+}
+
+.idp-insight-card {
+    background: var(--carbon-ui-01);
+    border: 1px solid var(--carbon-ui-03);
+    padding: var(--carbon-spacing-05);
+}
+
+.idp-insight-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--carbon-spacing-05);
+    padding-bottom: var(--carbon-spacing-04);
+    border-bottom: 1px solid var(--carbon-ui-03);
+}
+
+.idp-insight-title {
+    color: var(--carbon-text-01);
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-03);
+}
+
+.idp-insight-count {
+    background: var(--carbon-interactive-01);
+    color: var(--carbon-text-04);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.idp-insight-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--carbon-spacing-04);
+}
+
+.idp-insight-item {
+    padding: var(--carbon-spacing-03);
+    background: var(--carbon-ui-background);
+    border-left: 3px solid var(--carbon-ui-03);
+    transition: border-color 0.11s;
+}
+
+.idp-insight-item:hover {
+    border-left-color: var(--carbon-interactive-01);
+}
+
+.idp-insight-item-title {
+    color: var(--carbon-text-01);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: var(--carbon-spacing-02);
+}
+
+.idp-insight-item-meta {
+    color: var(--carbon-text-02);
+    font-size: 0.75rem;
+}
+
+.idp-insight-view-more {
+    margin-top: var(--carbon-spacing-04);
+    color: var(--carbon-interactive-01);
+    font-size: 0.875rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--carbon-spacing-02);
+}
+
+.idp-insight-view-more:hover {
+    text-decoration: underline;
+}
+
+/* AI Assistant Widget */
+.idp-ai-section {
+    margin-bottom: var(--carbon-spacing-09);
+}
+
+.idp-ai-widget {
+    background: linear-gradient(135deg, #0f62fe 0%, #0043ce 100%);
+    padding: var(--carbon-spacing-07);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.idp-ai-widget::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+}
+
+.idp-ai-content {
+    position: relative;
+    z-index: 1;
+}
+
+.idp-ai-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: var(--carbon-spacing-03);
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-03);
+}
+
+.idp-ai-desc {
+    font-size: 1rem;
+    margin-bottom: var(--carbon-spacing-05);
+    opacity: 0.9;
+}
+
+.idp-ai-btn {
+    background: white;
+    color: #0f62fe;
+    border: none;
+    padding: var(--carbon-spacing-04) var(--carbon-spacing-06);
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.11s;
+}
+
+.idp-ai-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Quick Links */
+.idp-quicklinks-section {
+    margin-bottom: var(--carbon-spacing-09);
+}
+
+.idp-quicklinks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--carbon-spacing-05);
+}
+
+.idp-quicklink-card {
+    background: var(--carbon-ui-01);
+    border: 1px solid var(--carbon-ui-03);
+    padding: var(--carbon-spacing-05);
+    cursor: pointer;
+    transition: all 0.11s;
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-04);
+}
+
+.idp-quicklink-card:hover {
+    background: var(--carbon-hover-ui);
+    border-color: var(--carbon-interactive-01);
+}
+
+.idp-quicklink-icon {
+    font-size: 1.5rem;
+    color: var(--carbon-interactive-01);
+}
+
+.idp-quicklink-text {
+    flex: 1;
+}
+
+.idp-quicklink-title {
+    color: var(--carbon-text-01);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--carbon-spacing-02);
+}
+
+.idp-quicklink-desc {
+    color: var(--carbon-text-02);
+    font-size: 0.75rem;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-success {
+    background: #24a148;
+    color: white;
+}
+
+.status-warning {
+    background: #f1c21b;
+    color: black;
+}
+
+.status-error {
+    background: #da1e28;
+    color: white;
+}
+
+.status-info {
+    background: #0f62fe;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .idp-hero-actions {
+        grid-template-columns: 1fr;
+    }
+    
+    .idp-persona-grid,
+    .idp-insights-grid,
+    .idp-quicklinks-grid {
+        grid-template-columns: 1fr;
+    }
+}]]></css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Enhanced IDPBob Home Page with IBM Carbon Design</description>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>idp_bob_home_enhanced</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {}]]></link>
+        <name>IDP Bob Home Enhanced</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    // Get user information
+    data.user = gs.getUser();
+    data.userName = data.user.getDisplayName();
+    data.userFirstName = data.user.getFirstName() || data.userName;
+    
+    // Get user roles
+    var roles = gs.getUser().getRoles().toString().split(',');
+    data.userRoles = roles;
+    
+    // Determine primary persona and welcome message
+    data.primaryPersona = 'Application Developer'; // default
+    data.personaIcon = 'fa-code';
+    
+    if (roles.indexOf('x_ibmin_idpbob.servicenow_admin') > -1) {
+        data.primaryPersona = 'ServiceNow Administrator';
+        data.personaIcon = 'fa-cog';
+    } else if (roles.indexOf('x_ibmin_idpbob.platform_engineer') > -1) {
+        data.primaryPersona = 'Platform Engineer';
+        data.personaIcon = 'fa-server';
+    } else if (roles.indexOf('x_ibmin_idpbob.sre') > -1) {
+        data.primaryPersona = 'Site Reliability Engineer';
+        data.personaIcon = 'fa-heartbeat';
+    } else if (roles.indexOf('x_ibmin_idpbob.security_engineer') > -1) {
+        data.primaryPersona = 'Security Engineer';
+        data.personaIcon = 'fa-shield';
+    } else if (roles.indexOf('x_ibmin_idpbob.product_owner') > -1) {
+        data.primaryPersona = 'Product Owner';
+        data.personaIcon = 'fa-users';
+    }
+    
+    // Persona tiles with role-based visibility
+    data.personaTiles = [];
+    
+    if (roles.indexOf('x_ibmin_idpbob.application_developer') > -1 || roles.length === 0) {
+        data.personaTiles.push({
+            id: 'developer',
+            title: 'Developer Workspace',
+            icon: 'fa-code',
+            description: 'Build and deploy applications with ease'
+        });
+    }
+    
+    if (roles.indexOf('x_ibmin_idpbob.platform_engineer') > -1) {
+        data.personaTiles.push({
+            id: 'platform',
+            title: 'Platform Engineering Console',
+            icon: 'fa-server',
+            description: 'Manage infrastructure and platform services'
+        });
+    }
+    
+    if (roles.indexOf('x_ibmin_idpbob.sre') > -1) {
+        data.personaTiles.push({
+            id: 'sre',
+            title: 'SRE Command Center',
+            icon: 'fa-heartbeat',
+            description: 'Ensure reliability and performance'
+        });
+    }
+    
+    if (roles.indexOf('x_ibmin_idpbob.security_engineer') > -1) {
+        data.personaTiles.push({
+            id: 'security',
+            title: 'Security & Compliance Hub',
+            icon: 'fa-shield',
+            description: 'Manage security and compliance'
+        });
+    }
+    
+    if (roles.indexOf('x_ibmin_idpbob.product_owner') > -1) {
+        data.personaTiles.push({
+            id: 'product',
+            title: 'Product Demand Portal',
+            icon: 'fa-users',
+            description: 'Oversee product development and delivery'
+        });
+    }
+    
+    // Show all tiles if admin
+    if (roles.indexOf('x_ibmin_idpbob.servicenow_admin') > -1) {
+        data.personaTiles = [
+            {id: 'developer', title: 'Developer Workspace', icon: 'fa-code', description: 'Build and deploy applications'},
+            {id: 'platform', title: 'Platform Engineering Console', icon: 'fa-server', description: 'Manage infrastructure'},
+            {id: 'sre', title: 'SRE Command Center', icon: 'fa-heartbeat', description: 'Ensure reliability'},
+            {id: 'security', title: 'Security & Compliance Hub', icon: 'fa-shield', description: 'Manage security'},
+            {id: 'product', title: 'Product Demand Portal', icon: 'fa-users', description: 'Oversee development'}
+        ];
+    }
+    
+    // Recent Deployments (mock data - replace with actual queries)
+    data.recentDeployments = [
+        {name: 'payment-service v2.3.1', status: 'success', time: '5 minutes ago', env: 'Production'},
+        {name: 'user-api v1.8.0', status: 'success', time: '23 minutes ago', env: 'Staging'},
+        {name: 'frontend-app v3.1.0', status: 'in_progress', time: '1 hour ago', env: 'Production'}
+    ];
+    
+    // Active Incidents (mock data)
+    data.activeIncidents = [
+        {number: 'INC0001234', title: 'API Gateway High Latency', priority: 'P1', assignee: 'SRE Team'},
+        {number: 'INC0001235', title: 'Database Connection Pool', priority: 'P2', assignee: 'Platform Team'}
+    ];
+    
+    // Approval Queue (mock data)
+    data.approvalQueue = [
+        {type: 'Change Request', title: 'Production Deployment - payment-service', requester: 'John Doe', age: '2 hours'},
+        {type: 'Access Request', title: 'Production Database Access', requester: 'Jane Smith', age: '4 hours'},
+        {type: 'Infrastructure', title: 'New Kubernetes Cluster', requester: 'Platform Team', age: '1 day'}
+    ];
+    
+    // Security Findings (mock data)
+    data.securityFindings = [
+        {severity: 'critical', title: 'SQL Injection Vulnerability', component: 'user-api', age: '1 day'},
+        {severity: 'high', title: 'Outdated Dependencies', component: 'frontend-app', age: '3 days'}
+    ];
+    
+    // Counts for badges
+    data.deploymentCount = data.recentDeployments.length;
+    data.incidentCount = data.activeIncidents.length;
+    data.approvalCount = data.approvalQueue.length;
+    data.securityCount = data.securityFindings.length;
+    
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-02 06:35:00</sys_created_on>
+        <sys_id>e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>IDP Bob Home Enhanced</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sp_widget_idp_bob_home_enhanced</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-02 06:35:00</sys_updated_on>
+        <template><![CDATA[<div class="idp-bob-home">
+    <!-- Hero Section -->
+    <div class="idp-hero-section">
+        <div class="idp-hero-content">
+            <h1 class="idp-hero-welcome">
+                <i class="fa {{data.personaIcon}}"></i>
+                Welcome back, {{data.userFirstName}}
+            </h1>
+            <p class="idp-hero-subtitle">{{data.primaryPersona}} • Your central hub for building, deploying, and managing applications</p>
+            
+            <!-- Quick Action Buttons -->
+            <div class="idp-hero-actions">
+                <button class="idp-hero-btn" ng-click="c.heroAction('request_service')">
+                    <i class="fa fa-shopping-cart"></i>
+                    <div class="idp-hero-btn-text">
+                        <span class="idp-hero-btn-title">Request New Service</span>
+                        <span class="idp-hero-btn-desc">Browse service catalog</span>
+                    </div>
+                </button>
+                
+                <button class="idp-hero-btn" ng-click="c.heroAction('deploy_app')">
+                    <i class="fa fa-rocket"></i>
+                    <div class="idp-hero-btn-text">
+                        <span class="idp-hero-btn-title">Deploy Application</span>
+                        <span class="idp-hero-btn-desc">Start deployment</span>
+                    </div>
+                </button>
+                
+                <button class="idp-hero-btn" ng-click="c.heroAction('view_pipelines')">
+                    <i class="fa fa-random"></i>
+                    <div class="idp-hero-btn-text">
+                        <span class="idp-hero-btn-title">View Pipelines</span>
+                        <span class="idp-hero-btn-desc">CI/CD status</span>
+                    </div>
+                </button>
+                
+                <button class="idp-hero-btn" ng-click="c.heroAction('system_health')">
+                    <i class="fa fa-heartbeat"></i>
+                    <div class="idp-hero-btn-text">
+                        <span class="idp-hero-btn-title">Check System Health</span>
+                        <span class="idp-hero-btn-desc">Platform status</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="idp-main-content">
+        <!-- Persona Tiles -->
+        <div class="idp-persona-section" ng-if="data.personaTiles.length > 0">
+            <h2 class="idp-section-title">Your Workspaces</h2>
+            <div class="idp-persona-grid">
+                <div class="idp-persona-tile" ng-repeat="tile in data.personaTiles" ng-click="c.navigateToPersona(tile.id)">
+                    <div class="idp-persona-tile-icon">
+                        <i class="fa {{tile.icon}}"></i>
+                    </div>
+                    <h3 class="idp-persona-tile-title">{{tile.title}}</h3>
+                    <p class="idp-persona-tile-desc">{{tile.description}}</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Insights Panel -->
+        <div class="idp-insights-section">
+            <h2 class="idp-section-title">Platform Insights</h2>
+            <div class="idp-insights-grid">
+                <!-- Recent Deployments -->
+                <div class="idp-insight-card">
+                    <div class="idp-insight-header">
+                        <h3 class="idp-insight-title">
+                            <i class="fa fa-rocket"></i>
+                            Recent Deployments
+                        </h3>
+                        <span class="idp-insight-count">{{data.deploymentCount}}</span>
+                    </div>
+                    <div class="idp-insight-items">
+                        <div class="idp-insight-item" ng-repeat="deploy in data.recentDeployments">
+                            <div class="idp-insight-item-title">{{deploy.name}}</div>
+                            <div class="idp-insight-item-meta">
+                                <span class="status-badge" ng-class="{'status-success': deploy.status === 'success', 'status-info': deploy.status === 'in_progress'}">
+                                    {{deploy.status === 'success' ? 'Success' : 'In Progress'}}
+                                </span>
+                                • {{deploy.env}} • {{deploy.time}}
+                            </div>
+                        </div>
+                    </div>
+                    <a class="idp-insight-view-more" ng-click="c.viewMore('deployments')">
+                        View all deployments <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Active Incidents -->
+                <div class="idp-insight-card">
+                    <div class="idp-insight-header">
+                        <h3 class="idp-insight-title">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            Active Incidents
+                        </h3>
+                        <span class="idp-insight-count">{{data.incidentCount}}</span>
+                    </div>
+                    <div class="idp-insight-items">
+                        <div class="idp-insight-item" ng-repeat="incident in data.activeIncidents">
+                            <div class="idp-insight-item-title">{{incident.number}}: {{incident.title}}</div>
+                            <div class="idp-insight-item-meta">
+                                <span class="status-badge" ng-class="{'status-error': incident.priority === 'P1', 'status-warning': incident.priority === 'P2'}">
+                                    {{incident.priority}}
+                                </span>
+                                • Assigned to {{incident.assignee}}
+                            </div>
+                        </div>
+                    </div>
+                    <a class="idp-insight-view-more" ng-click="c.viewMore('incidents')">
+                        View all incidents <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Approval Queue -->
+                <div class="idp-insight-card">
+                    <div class="idp-insight-header">
+                        <h3 class="idp-insight-title">
+                            <i class="fa fa-check-square"></i>
+                            Approval Queue
+                        </h3>
+                        <span class="idp-insight-count">{{data.approvalCount}}</span>
+                    </div>
+                    <div class="idp-insight-items">
+                        <div class="idp-insight-item" ng-repeat="approval in data.approvalQueue">
+                            <div class="idp-insight-item-title">{{approval.title}}</div>
+                            <div class="idp-insight-item-meta">
+                                <span class="status-badge status-info">{{approval.type}}</span>
+                                • {{approval.requester}} • {{approval.age}}
+                            </div>
+                        </div>
+                    </div>
+                    <a class="idp-insight-view-more" ng-click="c.viewMore('approvals')">
+                        View all approvals <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Security Findings -->
+                <div class="idp-insight-card">
+                    <div class="idp-insight-header">
+                        <h3 class="idp-insight-title">
+                            <i class="fa fa-shield"></i>
+                            Security Findings
+                        </h3>
+                        <span class="idp-insight-count">{{data.securityCount}}</span>
+                    </div>
+                    <div class="idp-insight-items">
+                        <div class="idp-insight-item" ng-repeat="finding in data.securityFindings">
+                            <div class="idp-insight-item-title">{{finding.title}}</div>
+                            <div class="idp-insight-item-meta">
+                                <span class="status-badge" ng-class="{'status-error': finding.severity === 'critical', 'status-warning': finding.severity === 'high'}">
+                                    {{finding.severity | uppercase}}
+                                </span>
+                                • {{finding.component}} • {{finding.age}}
+                            </div>
+                        </div>
+                    </div>
+                    <a class="idp-insight-view-more" ng-click="c.viewMore('security')">
+                        View all findings <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- AI Assistant Widget -->
+        <div class="idp-ai-section">
+            <div class="idp-ai-widget">
+                <div class="idp-ai-content">
+                    <h2 class="idp-ai-title">
+                        <i class="fa fa-magic"></i>
+                        Ask Platform AI
+                    </h2>
+                    <p class="idp-ai-desc">
+                        Get instant answers about deployments, troubleshooting, best practices, and more. 
+                        Your intelligent assistant for platform operations.
+                    </p>
+                    <button class="idp-ai-btn" ng-click="c.openAI()">
+                        <i class="fa fa-comments"></i> Start Conversation
+                    </button>
+                    <p style="margin-top: var(--carbon-spacing-04); font-size: 0.75rem; opacity: 0.8;">
+                        <i class="fa fa-info-circle"></i> Future orchestration layer - Coming Soon
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quick Links Section -->
+        <div class="idp-quicklinks-section">
+            <h2 class="idp-section-title">Quick Links</h2>
+            <div class="idp-quicklinks-grid">
+                <div class="idp-quicklink-card" ng-click="c.quickLink('gitlab')">
+                    <div class="idp-quicklink-icon">
+                        <i class="fa fa-gitlab"></i>
+                    </div>
+                    <div class="idp-quicklink-text">
+                        <h3 class="idp-quicklink-title">GitLab Pipelines</h3>
+                        <p class="idp-quicklink-desc">View CI/CD pipeline status</p>
+                    </div>
+                    <i class="fa fa-arrow-right" style="color: var(--carbon-text-02);"></i>
+                </div>
+                
+                <div class="idp-quicklink-card" ng-click="c.quickLink('catalog')">
+                    <div class="idp-quicklink-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    <div class="idp-quicklink-text">
+                        <h3 class="idp-quicklink-title">Service Catalog</h3>
+                        <p class="idp-quicklink-desc">Request platform services</p>
+                    </div>
+                    <i class="fa fa-arrow-right" style="color: var(--carbon-text-02);"></i>
+                </div>
+                
+                <div class="idp-quicklink-card" ng-click="c.quickLink('api_explorer')">
+                    <div class="idp-quicklink-icon">
+                        <i class="fa fa-plug"></i>
+                    </div>
+                    <div class="idp-quicklink-text">
+                        <h3 class="idp-quicklink-title">API Explorer</h3>
+                        <p class="idp-quicklink-desc">Browse and test APIs</p>
+                    </div>
+                    <i class="fa fa-arrow-right" style="color: var(--carbon-text-02);"></i>
+                </div>
+                
+                <div class="idp-quicklink-card" ng-click="c.quickLink('observability')">
+                    <div class="idp-quicklink-icon">
+                        <i class="fa fa-line-chart"></i>
+                    </div>
+                    <div class="idp-quicklink-text">
+                        <h3 class="idp-quicklink-title">Observability Dashboards</h3>
+                        <p class="idp-quicklink-desc">Monitor system health</p>
+                    </div>
+                    <i class="fa fa-arrow-right" style="color: var(--carbon-text-02);"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
+
+<!-- Made with Bob -->
