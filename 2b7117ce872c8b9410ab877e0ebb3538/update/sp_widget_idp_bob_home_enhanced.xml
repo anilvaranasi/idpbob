@@ -16,13 +16,16 @@
                 $location.path('/service_catalog');
                 break;
             case 'deploy_app':
-                $location.path('/deploy');
+                // Redirect to service catalog with deployment focus
+                $location.path('/service_catalog');
                 break;
             case 'view_pipelines':
-                $location.path('/pipelines');
+                // Redirect to developer workspace
+                $location.path('/developer');
                 break;
             case 'system_health':
-                $location.path('/health');
+                // Redirect to SRE workspace
+                $location.path('/sre');
                 break;
         }
     };
@@ -31,16 +34,19 @@
     c.quickLink = function(link) {
         switch(link) {
             case 'gitlab':
-                $location.path('/gitlab-pipelines');
+                // Redirect to developer workspace
+                $location.path('/developer');
                 break;
             case 'catalog':
                 $location.path('/service_catalog');
                 break;
             case 'api_explorer':
-                $location.path('/api-explorer');
+                // Redirect to developer workspace
+                $location.path('/developer');
                 break;
             case 'observability':
-                $location.path('/observability');
+                // Redirect to SRE workspace
+                $location.path('/sre');
                 break;
         }
     };
@@ -49,16 +55,20 @@
     c.viewMore = function(type) {
         switch(type) {
             case 'deployments':
-                $location.path('/deployments');
+                // Redirect to developer workspace
+                $location.path('/developer');
                 break;
             case 'incidents':
-                $location.path('/incidents');
+                // Redirect to SRE workspace
+                $location.path('/sre');
                 break;
             case 'approvals':
-                $location.path('/approvals');
+                // Redirect to service catalog
+                $location.path('/service_catalog');
                 break;
             case 'security':
-                $location.path('/security-findings');
+                // Redirect to security workspace
+                $location.path('/security');
                 break;
         }
     };
