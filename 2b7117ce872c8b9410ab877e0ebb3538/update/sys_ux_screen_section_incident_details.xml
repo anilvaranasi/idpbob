@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ux_screen_section">
+    <sys_ux_screen_section action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Main details section for incident information</description>
+        <name>Incident Details</name>
+        <order>200</order>
+        <screen display_value="Incident Management Screen">uxinc001uxinc001uxinc001uxinc001uxinc</screen>
+        <section_id>incident_details_section</section_id>
+        <sys_class_name>sys_ux_screen_section</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-20 14:08:00</sys_created_on>
+        <sys_id>uxsec002uxsec002uxsec002uxsec002uxse</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Incident Details</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sys_ux_screen_section_incident_details</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-20 14:08:00</sys_updated_on>
+        <title>Details</title>
+        <type>form</type>
+    </sys_ux_screen_section>
+</record_update>
+
+<!-- Made with Bob -->

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ux_screen_field">
+    <sys_ux_screen_field action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <field_name>category</field_name>
+        <order>300</order>
+        <read_only>false</read_only>
+        <required>false</required>
+        <screen_section display_value="Incident Assignment">uxsec003uxsec003uxsec003uxsec003uxse</screen_section>
+        <sys_class_name>sys_ux_screen_field</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-20 14:08:00</sys_created_on>
+        <sys_id>uxfld010uxfld010uxfld010uxfld010uxfl</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>category</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sys_ux_screen_field_incident_category</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-20 14:08:00</sys_updated_on>
+        <visible>true</visible>
+    </sys_ux_screen_field>
+</record_update>
+
+<!-- Made with Bob -->
