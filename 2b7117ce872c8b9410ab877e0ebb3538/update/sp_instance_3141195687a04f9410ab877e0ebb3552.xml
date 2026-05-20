@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f</sp_column>
+        <sp_widget display_value="IDP Home Content">6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>srinivas.anil.kumar.varanasi@ibm.com</sys_created_by>
+        <sys_created_on>2026-05-01 15:25:07</sys_created_on>
+        <sys_id>3141195687a04f9410ab877e0ebb3552</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sp_instance_3141195687a04f9410ab877e0ebb3552</sys_update_name>
+        <sys_updated_by>srinivas.anil.kumar.varanasi@ibm.com</sys_updated_by>
+        <sys_updated_on>2026-05-01 15:25:07</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=3141195687a04f9410ab877e0ebb3552"/>
+</record_update>

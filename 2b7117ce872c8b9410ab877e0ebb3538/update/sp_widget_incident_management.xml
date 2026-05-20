@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script><![CDATA[function($scope, $http, $location, spModal) {
+    var c = this;
+    
+    // Initialize filters
+    c.filters = {
+        priority: '',
+        state: '',
+        assignment_group: '',
+        search: ''
+    };
+    
+    // Refresh data
+    c.refresh = function() {
+        c.server.get({
+            filters: c.filters
+        }).then(function(response) {
+            c.data.incidents = response.data.incidents;
+            c.data.metrics = response.data.metrics;
+        });
+    };
+    
+    // View incident details
+    c.viewIncident = function(incidentId) {
+        spModal.open({
+            title: 'Incident Details',
+            widget: 'incident_detail_modal',
+            widgetInput: {
+                incident_id: incidentId
+            },
+            size: 'lg'
+        }).then(function() {
+            c.refresh();
+        });
+    };
+    
+    // Create new incident
+    c.createIncident = function() {
+        spModal.open({
+            title: 'Create New Incident',
+            widget: 'incident_create_modal',
+            size: 'lg'
+        }).then(function() {
+            c.refresh();
+        });
+    };
+    
+    // Update incident
+    c.updateIncident = function(incident, field, value) {
+        c.server.update({
+            incident_id: incident.sys_id,
+            field: field,
+            value: value
+        }).then(function(response) {
+            if (response.data.success) {
+                c.refresh();
+            }
+        });
+    };
+    
+    // Export incidents
+    c.exportIncidents = function() {
+        var csv = 'Number,Priority,State,Short Description,Assigned To,Created\n';
+        c.data.incidents.forEach(function(inc) {
+            csv += inc.number + ',' + inc.priority + ',' + inc.state + ',' + 
+                   inc.short_description + ',' + inc.assigned_to + ',' + inc.sys_created_on + '\n';
+        });
+        var blob = new Blob([csv], { type: 'text/csv' });
+        var url = window.URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'incidents_' + new Date().toISOString() + '.csv';
+        a.click();
+    };
+    
+    // Apply filters
+    c.applyFilters = function() {
+        c.refresh();
+    };
+    
+    // Clear filters
+    c.clearFilters = function() {
+        c.filters = {
+            priority: '',
+            state: '',
+            assignment_group: '',
+            search: ''
+        };
+        c.refresh();
+    };
+    
+    // Navigate to AI assistant
+    c.openAIAssistant = function(incident) {
+        spModal.open({
+            title: 'AI Assistant - Incident Analysis',
+            widget: 'ai_incident_assistant',
+            widgetInput: {
+                incident_id: incident.sys_id
+            },
+            size: 'lg'
+        });
+    };
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css><![CDATA[.incident-management {
+    padding: var(--carbon-spacing-05);
+    background: var(--carbon-ui-background);
+}
+
+.page-header {
+    margin-bottom: var(--carbon-spacing-06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-header h1 {
+    color: var(--carbon-text-01);
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-03);
+    margin: 0;
+}
+
+.header-actions {
+    display: flex;
+    gap: var(--carbon-spacing-03);
+}
+
+.btn-primary {
+    background: var(--carbon-interactive-01);
+    color: white;
+    border: none;
+    padding: var(--carbon-spacing-03) var(--carbon-spacing-05);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-02);
+    transition: background 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #0353e9;
+}
+
+.btn-secondary {
+    background: var(--carbon-ui-01);
+    color: var(--carbon-text-01);
+    border: 1px solid var(--carbon-ui-04);
+    padding: var(--carbon-spacing-03) var(--carbon-spacing-05);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-02);
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: var(--carbon-hover-ui);
+}
+
+/* Metrics Cards */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--carbon-spacing-04);
+    margin-bottom: var(--carbon-spacing-06);
+}
+
+.metric-card {
+    background: var(--carbon-ui-01);
+    border: 1px solid var(--carbon-ui-03);
+    border-radius: 4px;
+    padding: var(--carbon-spacing-05);
+    text-align: center;
+}
+
+.metric-value {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--carbon-text-01);
+    margin-bottom: var(--carbon-spacing-02);
+}
+
+.metric-value.critical {
+    color: #da1e28;
+}
+
+.metric-value.high {
+    color: #ff832b;
+}
+
+.metric-value.medium {
+    color: #f1c21b;
+}
+
+.metric-value.low {
+    color: #24a148;
+}
+
+.metric-label {
+    font-size: 0.875rem;
+    color: var(--carbon-text-02);
+}
+
+.metric-trend {
+    font-size: 0.75rem;
+    margin-top: var(--carbon-spacing-02);
+}
+
+.metric-trend.up {
+    color: #da1e28;
+}
+
+.metric-trend.down {
+    color: #24a148;
+}
+
+/* Filters Section */
+.filters-section {
+    background: var(--carbon-ui-01);
+    border: 1px solid var(--carbon-ui-03);
+    border-radius: 4px;
+    padding: var(--carbon-spacing-05);
+    margin-bottom: var(--carbon-spacing-05);
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--carbon-spacing-04);
+    margin-bottom: var(--carbon-spacing-04);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--carbon-spacing-02);
+}
+
+.filter-group label {
+    font-size: 0.75rem;
+    color: var(--carbon-text-02);
+    font-weight: 600;
+}
+
+.filter-group select,
+.filter-group input {
+    padding: var(--carbon-spacing-03);
+    border: 1px solid var(--carbon-ui-04);
+    border-radius: 4px;
+    background: var(--carbon-ui-background);
+    color: var(--carbon-text-01);
+    font-size: 0.875rem;
+}
+
+.filter-actions {
+    display: flex;
+    gap: var(--carbon-spacing-03);
+    justify-content: flex-end;
+}
+
+/* Incidents Table */
+.incidents-table-container {
+    background: var(--carbon-ui-01);
+    border: 1px solid var(--carbon-ui-03);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.table-header {
+    padding: var(--carbon-spacing-04) var(--carbon-spacing-05);
+    background: var(--carbon-ui-02);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--carbon-ui-03);
+}
+
+.table-header h2 {
+    font-size: 1.125rem;
+    color: var(--carbon-text-01);
+    margin: 0;
+}
+
+.table-actions {
+    display: flex;
+    gap: var(--carbon-spacing-03);
+}
+
+.incidents-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.incidents-table thead {
+    background: var(--carbon-ui-02);
+}
+
+.incidents-table th {
+    padding: var(--carbon-spacing-04);
+    text-align: left;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--carbon-text-02);
+    border-bottom: 1px solid var(--carbon-ui-03);
+}
+
+.incidents-table tbody tr {
+    border-bottom: 1px solid var(--carbon-ui-03);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.incidents-table tbody tr:hover {
+    background: var(--carbon-hover-ui);
+}
+
+.incidents-table td {
+    padding: var(--carbon-spacing-04);
+    font-size: 0.875rem;
+    color: var(--carbon-text-01);
+}
+
+/* Priority Badge */
+.priority-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.priority-badge.p1-critical {
+    background: #da1e28;
+    color: white;
+}
+
+.priority-badge.p2-high {
+    background: #ff832b;
+    color: white;
+}
+
+.priority-badge.p3-moderate {
+    background: #f1c21b;
+    color: black;
+}
+
+.priority-badge.p4-low {
+    background: #24a148;
+    color: white;
+}
+
+.priority-badge.p5-planning {
+    background: #8d8d8d;
+    color: white;
+}
+
+/* State Badge */
+.state-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.state-badge.new {
+    background: #e0e0e0;
+    color: #161616;
+}
+
+.state-badge.in-progress {
+    background: #0f62fe;
+    color: white;
+}
+
+.state-badge.on-hold {
+    background: #f1c21b;
+    color: black;
+}
+
+.state-badge.resolved {
+    background: #24a148;
+    color: white;
+}
+
+.state-badge.closed {
+    background: #8d8d8d;
+    color: white;
+}
+
+/* AI Assistant Button */
+.ai-assist-btn {
+    background: linear-gradient(135deg, #0f62fe 0%, #8a3ffc 100%);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--carbon-spacing-02);
+    transition: opacity 0.2s ease;
+}
+
+.ai-assist-btn:hover {
+    opacity: 0.9;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: var(--carbon-spacing-09);
+    color: var(--carbon-text-02);
+}
+
+.empty-state i {
+    font-size: 4rem;
+    color: var(--carbon-ui-04);
+    margin-bottom: var(--carbon-spacing-04);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--carbon-spacing-04);
+    }
+    
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .filters-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .incidents-table {
+        font-size: 0.75rem;
+    }
+}]]></css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Incident Management Dashboard with IBM ICA MCP Integration</description>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>incident_management</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {}]]></link>
+        <name>Incident Management</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_ibmin_idpbob.sre,x_ibmin_idpbob.servicenow_admin</roles>
+        <script><![CDATA[(function() {
+    // Get current user
+    data.user = gs.getUser();
+    data.userName = data.user.getDisplayName();
+    
+    // Get filter parameters
+    var filters = input.filters || {};
+    
+    // Build query for incidents
+    var incGr = new GlideRecord('incident');
+    incGr.addActiveQuery();
+    
+    // Apply filters
+    if (filters.priority) {
+        incGr.addQuery('priority', filters.priority);
+    }
+    if (filters.state) {
+        incGr.addQuery('state', filters.state);
+    }
+    if (filters.assignment_group) {
+        incGr.addQuery('assignment_group', filters.assignment_group);
+    }
+    if (filters.search) {
+        var qc = incGr.addQuery('number', 'CONTAINS', filters.search);
+        qc.addOrCondition('short_description', 'CONTAINS', filters.search);
+        qc.addOrCondition('description', 'CONTAINS', filters.search);
+    }
+    
+    incGr.orderByDesc('sys_created_on');
+    incGr.setLimit(100);
+    incGr.query();
+    
+    // Collect incidents
+    data.incidents = [];
+    while (incGr.next()) {
+        data.incidents.push({
+            sys_id: incGr.getValue('sys_id'),
+            number: incGr.getValue('number'),
+            priority: incGr.getDisplayValue('priority'),
+            priority_value: incGr.getValue('priority'),
+            state: incGr.getDisplayValue('state'),
+            state_value: incGr.getValue('state'),
+            short_description: incGr.getValue('short_description'),
+            assigned_to: incGr.getDisplayValue('assigned_to') || 'Unassigned',
+            assignment_group: incGr.getDisplayValue('assignment_group') || 'Unassigned',
+            sys_created_on: incGr.getDisplayValue('sys_created_on'),
+            category: incGr.getDisplayValue('category'),
+            impact: incGr.getDisplayValue('impact'),
+            urgency: incGr.getDisplayValue('urgency')
+        });
+    }
+    
+    // Calculate metrics
+    data.metrics = {
+        total: 0,
+        critical: 0,
+        high: 0,
+        medium: 0,
+        low: 0,
+        new: 0,
+        in_progress: 0,
+        resolved_today: 0,
+        avg_resolution_time: 0
+    };
+    
+    // Count by priority
+    var priorityGr = new GlideAggregate('incident');
+    priorityGr.addActiveQuery();
+    priorityGr.addAggregate('COUNT');
+    priorityGr.groupBy('priority');
+    priorityGr.query();
+    
+    while (priorityGr.next()) {
+        var priority = priorityGr.getValue('priority');
+        var count = parseInt(priorityGr.getAggregate('COUNT'));
+        data.metrics.total += count;
+        
+        if (priority == '1') data.metrics.critical = count;
+        else if (priority == '2') data.metrics.high = count;
+        else if (priority == '3') data.metrics.medium = count;
+        else if (priority == '4' || priority == '5') data.metrics.low += count;
+    }
+    
+    // Count by state
+    var stateGr = new GlideAggregate('incident');
+    stateGr.addActiveQuery();
+    stateGr.addAggregate('COUNT');
+    stateGr.groupBy('state');
+    stateGr.query();
+    
+    while (stateGr.next()) {
+        var state = stateGr.getValue('state');
+        var count = parseInt(stateGr.getAggregate('COUNT'));
+        
+        if (state == '1') data.metrics.new = count;
+        else if (state == '2') data.metrics.in_progress = count;
+    }
+    
+    // Resolved today
+    var resolvedGr = new GlideAggregate('incident');
+    resolvedGr.addQuery('resolved_at', '>=', gs.daysAgoStart(0));
+    resolvedGr.addAggregate('COUNT');
+    resolvedGr.query();
+    
+    if (resolvedGr.next()) {
+        data.metrics.resolved_today = parseInt(resolvedGr.getAggregate('COUNT'));
+    }
+    
+    // Get assignment groups for filter
+    data.assignment_groups = [];
+    var grpGr = new GlideRecord('sys_user_group');
+    grpGr.addQuery('active', true);
+    grpGr.orderBy('name');
+    grpGr.query();
+    
+    while (grpGr.next()) {
+        data.assignment_groups.push({
+            sys_id: grpGr.getValue('sys_id'),
+            name: grpGr.getValue('name')
+        });
+    }
+    
+    // Priority options
+    data.priority_options = [
+        {value: '1', label: '1 - Critical'},
+        {value: '2', label: '2 - High'},
+        {value: '3', label: '3 - Moderate'},
+        {value: '4', label: '4 - Low'},
+        {value: '5', label: '5 - Planning'}
+    ];
+    
+    // State options
+    data.state_options = [
+        {value: '1', label: 'New'},
+        {value: '2', label: 'In Progress'},
+        {value: '3', label: 'On Hold'},
+        {value: '6', label: 'Resolved'},
+        {value: '7', label: 'Closed'}
+    ];
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-20 12:00:00</sys_created_on>
+        <sys_id>inc001inc001inc001inc001inc001inc001</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Incident Management</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sp_widget_incident_management</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-20 12:00:00</sys_updated_on>
+        <template><![CDATA[<div class="incident-management">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>
+            <i class="fa fa-exclamation-triangle"></i>
+            Incident Management
+        </h1>
+        <div class="header-actions">
+            <button class="btn-secondary" ng-click="c.refresh()">
+                <i class="fa fa-refresh"></i>
+                Refresh
+            </button>
+            <button class="btn-secondary" ng-click="c.exportIncidents()">
+                <i class="fa fa-download"></i>
+                Export
+            </button>
+            <button class="btn-primary" ng-click="c.createIncident()">
+                <i class="fa fa-plus"></i>
+                Create Incident
+            </button>
+        </div>
+    </div>
+    
+    <!-- Metrics Dashboard -->
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-value">{{data.metrics.total}}</div>
+            <div class="metric-label">Total Open</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value critical">{{data.metrics.critical}}</div>
+            <div class="metric-label">Critical (P1)</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value high">{{data.metrics.high}}</div>
+            <div class="metric-label">High (P2)</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value medium">{{data.metrics.medium}}</div>
+            <div class="metric-label">Moderate (P3)</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value low">{{data.metrics.low}}</div>
+            <div class="metric-label">Low (P4-P5)</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">{{data.metrics.resolved_today}}</div>
+            <div class="metric-label">Resolved Today</div>
+        </div>
+    </div>
+    
+    <!-- Filters Section -->
+    <div class="filters-section">
+        <div class="filters-grid">
+            <div class="filter-group">
+                <label>Priority</label>
+                <select ng-model="c.filters.priority">
+                    <option value="">All Priorities</option>
+                    <option ng-repeat="opt in data.priority_options" value="{{opt.value}}">{{opt.label}}</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>State</label>
+                <select ng-model="c.filters.state">
+                    <option value="">All States</option>
+                    <option ng-repeat="opt in data.state_options" value="{{opt.value}}">{{opt.label}}</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Assignment Group</label>
+                <select ng-model="c.filters.assignment_group">
+                    <option value="">All Groups</option>
+                    <option ng-repeat="grp in data.assignment_groups" value="{{grp.sys_id}}">{{grp.name}}</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Search</label>
+                <input type="text" ng-model="c.filters.search" placeholder="Search incidents...">
+            </div>
+        </div>
+        <div class="filter-actions">
+            <button class="btn-secondary" ng-click="c.clearFilters()">Clear Filters</button>
+            <button class="btn-primary" ng-click="c.applyFilters()">Apply Filters</button>
+        </div>
+    </div>
+    
+    <!-- Incidents Table -->
+    <div class="incidents-table-container">
+        <div class="table-header">
+            <h2>Incidents ({{data.incidents.length}})</h2>
+            <div class="table-actions">
+                <span style="font-size: 0.875rem; color: var(--carbon-text-02);">
+                    Last updated: {{data.user.getDateTime()}}
+                </span>
+            </div>
+        </div>
+        
+        <table class="incidents-table" ng-if="data.incidents.length > 0">
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Priority</th>
+                    <th>State</th>
+                    <th>Short Description</th>
+                    <th>Assignment Group</th>
+                    <th>Assigned To</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="incident in data.incidents" ng-click="c.viewIncident(incident.sys_id)">
+                    <td><strong>{{incident.number}}</strong></td>
+                    <td>
+                        <span class="priority-badge" ng-class="{
+                            'p1-critical': incident.priority_value == '1',
+                            'p2-high': incident.priority_value == '2',
+                            'p3-moderate': incident.priority_value == '3',
+                            'p4-low': incident.priority_value == '4' || incident.priority_value == '5'
+                        }">
+                            {{incident.priority}}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="state-badge" ng-class="{
+                            'new': incident.state_value == '1',
+                            'in-progress': incident.state_value == '2',
+                            'on-hold': incident.state_value == '3',
+                            'resolved': incident.state_value == '6',
+                            'closed': incident.state_value == '7'
+                        }">
+                            {{incident.state}}
+                        </span>
+                    </td>
+                    <td>{{incident.short_description}}</td>
+                    <td>{{incident.assignment_group}}</td>
+                    <td>{{incident.assigned_to}}</td>
+                    <td>{{incident.sys_created_on}}</td>
+                    <td>
+                        <button class="ai-assist-btn" ng-click="c.openAIAssistant(incident); $event.stopPropagation();">
+                            <i class="fa fa-magic"></i>
+                            AI Assist
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="empty-state" ng-if="data.incidents.length == 0">
+            <i class="fa fa-inbox"></i>
+            <h3>No incidents found</h3>
+            <p>Try adjusting your filters or create a new incident.</p>
+        </div>
+    </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
+
+<!-- Made with Bob -->

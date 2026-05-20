@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item">
+    <sc_cat_item action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <availability>on_desktop</availability>
+        <billable>false</billable>
+        <category display_value="Observability Services">a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6</category>
+        <cost>0</cost>
+        <custom_cart/>
+        <delivery_plan/>
+        <delivery_plan_script/>
+        <delivery_time>0</delivery_time>
+        <description><![CDATA[<h3>Monitoring Dashboard Creation</h3>
+<p>Create custom monitoring dashboards with metrics, alerts, and visualizations for your services.</p>
+
+<h4>What You'll Get:</h4>
+<ul>
+<li>Grafana dashboard with custom panels</li>
+<li>Prometheus metrics integration</li>
+<li>Pre-configured service health metrics (RED/USE)</li>
+<li>Custom business metrics support</li>
+<li>Alert rules configured (PagerDuty/Slack integration)</li>
+<li>SLO/SLI tracking dashboards</li>
+<li>Distributed tracing integration (Jaeger)</li>
+<li>Log correlation (Loki/ELK)</li>
+</ul>
+
+<h4>Dashboard Types:</h4>
+<ul>
+<li><strong>Service Health:</strong> Request rate, error rate, duration (RED metrics)</li>
+<li><strong>Infrastructure:</strong> CPU, memory, disk, network (USE metrics)</li>
+<li><strong>Business Metrics:</strong> Custom KPIs and business logic</li>
+<li><strong>SLO Dashboard:</strong> Service level objectives and error budgets</li>
+</ul>
+
+<h4>Prerequisites:</h4>
+<ul>
+<li>Service name and namespace</li>
+<li>Metrics endpoints configured</li>
+<li>Dashboard type selection</li>
+<li>Alert notification channels</li>
+</ul>
+
+<h4>Approval Process:</h4>
+<p>SRE approval required for production monitoring setup.</p>
+
+<h4>SLA:</h4>
+<ul>
+<li><strong>Fulfillment Time:</strong> 3 business hours</li>
+<li><strong>Response Time:</strong> 1 hour</li>
+</ul>
+
+<h4>Tags:</h4>
+<p>observability, monitoring, grafana, prometheus, alerts, slo, metrics, dashboards</p>]]></description>
+        <entitlement_script/>
+        <flow_designer_flow/>
+        <group/>
+        <hide_sp>false</hide_sp>
+        <icon>dashboard</icon>
+        <ignore_price>false</ignore_price>
+        <image/>
+        <list_price>0</list_price>
+        <location/>
+        <mandatory_attachment>false</mandatory_attachment>
+        <meta/>
+        <mobile_hide_price>false</mobile_hide_price>
+        <mobile_picture/>
+        <mobile_picture_type>use_desktop_picture</mobile_picture_type>
+        <model/>
+        <name>Monitoring Dashboard Creation</name>
+        <no_attachment_v2>false</no_attachment_v2>
+        <no_cart>false</no_cart>
+        <no_cart_v2>false</no_cart_v2>
+        <no_delivery_time_v2>false</no_delivery_time_v2>
+        <no_order>false</no_order>
+        <no_order_now>false</no_order_now>
+        <no_proceed_checkout>false</no_proceed_checkout>
+        <no_quantity>false</no_quantity>
+        <no_quantity_v2>false</no_quantity_v2>
+        <no_search>false</no_search>
+        <omit_price>false</omit_price>
+        <order>500</order>
+        <ordered_item_link/>
+        <picture/>
+        <preview>JavaScript: new CatalogItemVariable().getVariablesForPreview(current);</preview>
+        <price>0</price>
+        <recurring_frequency/>
+        <recurring_price>0</recurring_price>
+        <request_method/>
+        <roles>x_ibmin_idpbob.application_developer,x_ibmin_idpbob.sre,x_ibmin_idpbob.platform_engineer</roles>
+        <sc_catalogs>c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1</sc_catalogs>
+        <sc_ic_item_staging/>
+        <sc_ic_version/>
+        <short_description>Create custom monitoring dashboards with metrics, alerts, and visualizations</short_description>
+        <show_variable_help_on_load>false</show_variable_help_on_load>
+        <start_closed>false</start_closed>
+        <sys_class_name>sc_cat_item</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-02 06:54:00</sys_created_on>
+        <sys_id>b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Monitoring Dashboard Creation</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sc_cat_item_monitoring_dashboard</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-02 06:54:00</sys_updated_on>
+        <template/>
+        <type>item</type>
+        <use_sc_layout>true</use_sc_layout>
+        <vendor/>
+        <visible_bundle>true</visible_bundle>
+        <visible_guide>true</visible_guide>
+        <visible_standalone>true</visible_standalone>
+        <workflow/>
+    </sc_cat_item>
+</record_update>
+
+<!-- Made with Bob -->

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role">
+    <sys_user_role action="INSERT_OR_UPDATE">
+        <assignable_by/>
+        <can_delegate>true</can_delegate>
+        <description>Default admin role</description>
+        <elevated_privilege>false</elevated_privilege>
+        <encryption_context/>
+        <federated_id>ETPM0c/Q1ZKQvPt9ZfnTNuKLdgmWW27jYsoETaD42sI=</federated_id>
+        <grantable>true</grantable>
+        <includes_roles/>
+        <name>x_ibmin_idpbob.admin</name>
+        <scoped_admin>false</scoped_admin>
+        <suffix>admin</suffix>
+        <sys_class_name>sys_user_role</sys_class_name>
+        <sys_created_by>srinivas.anil.kumar.varanasi@ibm.com</sys_created_by>
+        <sys_created_on>2026-05-01 06:06:50</sys_created_on>
+        <sys_id>bb7117ce872c8b9410ab877e0ebb3544</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_ibmin_idpbob.admin</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sys_user_role_bb7117ce872c8b9410ab877e0ebb3544</sys_update_name>
+        <sys_updated_by>srinivas.anil.kumar.varanasi@ibm.com</sys_updated_by>
+        <sys_updated_on>2026-05-01 06:06:50</sys_updated_on>
+    </sys_user_role>
+</record_update>

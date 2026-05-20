@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container">
+    <sp_container action="INSERT_OR_UPDATE">
+        <background_color>default</background_color>
+        <background_image/>
+        <background_style>default</background_style>
+        <bootstrap_alt>false</bootstrap_alt>
+        <class_name/>
+        <container_class_name/>
+        <name>IDPBob Home - Container 1</name>
+        <order>1</order>
+        <semantic_tag/>
+        <sp_page display_value="idpbob_home_page">3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c</sp_page>
+        <subheader>false</subheader>
+        <sys_class_name>sp_container</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-01 10:00:00</sys_created_on>
+        <sys_id>9f9f9f9f9f9f9f9f9f9f9f9f9f9f9f9f</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>IDPBob Home - Container 1</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sp_container_9f9f9f9f9f9f9f9f9f9f9f9f9f9f9f9f</sys_update_name>
+        <sys_updated_by>srinivas.anil.kumar.varanasi@ibm.com</sys_updated_by>
+        <sys_updated_on>2026-05-01 15:25:07</sys_updated_on>
+        <title/>
+        <width>fixed</width>
+    </sp_container>
+</record_update>

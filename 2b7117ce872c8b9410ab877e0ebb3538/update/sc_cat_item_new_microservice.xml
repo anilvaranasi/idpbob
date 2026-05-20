@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item">
+    <sc_cat_item action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <availability>on_desktop</availability>
+        <billable>false</billable>
+        <category display_value="Application Services">d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1</category>
+        <cost>0</cost>
+        <custom_cart/>
+        <delivery_plan/>
+        <delivery_plan_script/>
+        <delivery_time>0</delivery_time>
+        <description><![CDATA[<h3>New Microservice Creation</h3>
+<p>Create a new microservice with standardized templates, CI/CD pipeline, and infrastructure.</p>
+
+<h4>What You'll Get:</h4>
+<ul>
+<li>GitLab repository with service template</li>
+<li>CI/CD pipeline configured (GitLab CI)</li>
+<li>Kubernetes deployment manifests</li>
+<li>Service mesh integration (Istio)</li>
+<li>Observability stack (Prometheus, Grafana, Jaeger)</li>
+<li>API documentation (OpenAPI/Swagger)</li>
+<li>Security scanning enabled (SAST, DAST, SCA)</li>
+</ul>
+
+<h4>Prerequisites:</h4>
+<ul>
+<li>Service name and description</li>
+<li>Technology stack selection (Node.js, Python, Java, Go)</li>
+<li>Team ownership</li>
+<li>Resource requirements (CPU, memory)</li>
+</ul>
+
+<h4>Approval Process:</h4>
+<p>Platform Engineer approval required for infrastructure provisioning.</p>
+
+<h4>SLA:</h4>
+<ul>
+<li><strong>Fulfillment Time:</strong> 4 business hours</li>
+<li><strong>Response Time:</strong> 1 hour</li>
+</ul>
+
+<h4>Tags:</h4>
+<p>microservice, kubernetes, ci-cd, gitlab, service-mesh, golden-path</p>]]></description>
+        <entitlement_script/>
+        <flow_designer_flow/>
+        <group/>
+        <hide_sp>false</hide_sp>
+        <icon>code</icon>
+        <ignore_price>false</ignore_price>
+        <image/>
+        <list_price>0</list_price>
+        <location/>
+        <mandatory_attachment>false</mandatory_attachment>
+        <meta/>
+        <mobile_hide_price>false</mobile_hide_price>
+        <mobile_picture/>
+        <mobile_picture_type>use_desktop_picture</mobile_picture_type>
+        <model/>
+        <name>New Microservice Creation</name>
+        <no_attachment_v2>false</no_attachment_v2>
+        <no_cart>false</no_cart>
+        <no_cart_v2>false</no_cart_v2>
+        <no_delivery_time_v2>false</no_delivery_time_v2>
+        <no_order>false</no_order>
+        <no_order_now>false</no_order_now>
+        <no_proceed_checkout>false</no_proceed_checkout>
+        <no_quantity>false</no_quantity>
+        <no_quantity_v2>false</no_quantity_v2>
+        <no_search>false</no_search>
+        <omit_price>false</omit_price>
+        <order>200</order>
+        <ordered_item_link/>
+        <picture/>
+        <preview>JavaScript: new CatalogItemVariable().getVariablesForPreview(current);</preview>
+        <price>0</price>
+        <recurring_frequency/>
+        <recurring_price>0</recurring_price>
+        <request_method/>
+        <roles>x_ibmin_idpbob.application_developer,x_ibmin_idpbob.platform_engineer</roles>
+        <sc_catalogs>c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1</sc_catalogs>
+        <sc_ic_item_staging/>
+        <sc_ic_version/>
+        <short_description>Create a new microservice with standardized templates and CI/CD pipeline</short_description>
+        <show_variable_help_on_load>false</show_variable_help_on_load>
+        <start_closed>false</start_closed>
+        <sys_class_name>sc_cat_item</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-02 06:51:00</sys_created_on>
+        <sys_id>b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>New Microservice Creation</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sc_cat_item_new_microservice</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-02 06:51:00</sys_updated_on>
+        <template/>
+        <type>item</type>
+        <use_sc_layout>true</use_sc_layout>
+        <vendor/>
+        <visible_bundle>true</visible_bundle>
+        <visible_guide>true</visible_guide>
+        <visible_standalone>true</visible_standalone>
+        <workflow/>
+    </sc_cat_item>
+</record_update>
+
+<!-- Made with Bob -->

@@ -1,0 +1,66 @@
+stages:
+  - sync-to-main
+  - sync-from-main
+
+variables:
+  GIT_STRATEGY: clone
+
+# When push to bob -> merge to main first
+merge-bob-to-main:
+  stage: sync-to-main
+  script:
+    - apt-get update -qq && apt-get install -y -qq git
+    - git config --global user.email "ci@gitlab.com"
+    - git config --global user.name "GitLab CI"
+    - git remote set-url origin "https://oauth2:${GITLAB_TOKEN}@gitlab.com/anilvaranasi1-group/idpbob.git"
+    - git fetch --all
+    - git checkout main
+    - git merge origin/bob --no-ff -m "Auto-merge bob into main [skip ci]"
+    - git push origin main
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "bob"'
+
+# Then from main -> ibmdemo
+merge-main-to-ibmdemo-after-bob:
+  stage: sync-from-main
+  script:
+    - apt-get update -qq && apt-get install -y -qq git
+    - git config --global user.email "ci@gitlab.com"
+    - git config --global user.name "GitLab CI"
+    - git remote set-url origin "https://oauth2:${GITLAB_TOKEN}@gitlab.com/anilvaranasi1-group/idpbob.git"
+    - git fetch --all
+    - git checkout ibmdemo
+    - git merge origin/main --no-ff -m "Auto-merge main into ibmdemo [skip ci]"
+    - git push origin ibmdemo
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "bob"'
+
+# When push to ibmdemo -> merge to main first
+merge-ibmdemo-to-main:
+  stage: sync-to-main
+  script:
+    - apt-get update -qq && apt-get install -y -qq git
+    - git config --global user.email "ci@gitlab.com"
+    - git config --global user.name "GitLab CI"
+    - git remote set-url origin "https://oauth2:${GITLAB_TOKEN}@gitlab.com/anilvaranasi1-group/idpbob.git"
+    - git fetch --all
+    - git checkout main
+    - git merge origin/ibmdemo --no-ff -m "Auto-merge ibmdemo into main [skip ci]"
+    - git push origin main
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "ibmdemo"'
+
+# Then from main -> bob
+merge-main-to-bob-after-ibmdemo:
+  stage: sync-from-main
+  script:
+    - apt-get update -qq && apt-get install -y -qq git
+    - git config --global user.email "ci@gitlab.com"
+    - git config --global user.name "GitLab CI"
+    - git remote set-url origin "https://oauth2:${GITLAB_TOKEN}@gitlab.com/anilvaranasi1-group/idpbob.git"
+    - git fetch --all
+    - git checkout bob
+    - git merge origin/main --no-ff -m "Auto-merge main into bob [skip ci]"
+    - git push origin bob
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "ibmdemo"'

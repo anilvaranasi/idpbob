@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item">
+    <sc_cat_item action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <availability>on_desktop</availability>
+        <billable>false</billable>
+        <category display_value="Application Services">d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1</category>
+        <cost>0</cost>
+        <custom_cart/>
+        <delivery_plan/>
+        <delivery_plan_script/>
+        <delivery_time>0</delivery_time>
+        <description><![CDATA[<h3>Service Onboarding Request</h3>
+<p>Register a new service in the IDP catalog with metadata, ownership, and dependencies.</p>
+
+<h4>What You'll Get:</h4>
+<ul>
+<li>Service registered in Port.io-style catalog</li>
+<li>Metadata and ownership configured</li>
+<li>Dependencies mapped</li>
+<li>Service health dashboard created</li>
+<li>Documentation template generated</li>
+</ul>
+
+<h4>Prerequisites:</h4>
+<ul>
+<li>Service name and description</li>
+<li>Team ownership identified</li>
+<li>Technology stack defined</li>
+<li>Repository URL (if applicable)</li>
+</ul>
+
+<h4>Approval Process:</h4>
+<p>Platform Engineer approval required for catalog registration.</p>
+
+<h4>SLA:</h4>
+<ul>
+<li><strong>Fulfillment Time:</strong> 2 business hours</li>
+<li><strong>Response Time:</strong> 30 minutes</li>
+</ul>
+
+<h4>Tags:</h4>
+<p>service-catalog, onboarding, metadata, port-io</p>]]></description>
+        <entitlement_script/>
+        <flow_designer_flow/>
+        <group/>
+        <hide_sp>false</hide_sp>
+        <icon>service</icon>
+        <ignore_price>false</ignore_price>
+        <image/>
+        <list_price>0</list_price>
+        <location/>
+        <mandatory_attachment>false</mandatory_attachment>
+        <meta/>
+        <mobile_hide_price>false</mobile_hide_price>
+        <mobile_picture/>
+        <mobile_picture_type>use_desktop_picture</mobile_picture_type>
+        <model/>
+        <name>Service Onboarding Request</name>
+        <no_attachment_v2>false</no_attachment_v2>
+        <no_cart>false</no_cart>
+        <no_cart_v2>false</no_cart_v2>
+        <no_delivery_time_v2>false</no_delivery_time_v2>
+        <no_order>false</no_order>
+        <no_order_now>false</no_order_now>
+        <no_proceed_checkout>false</no_proceed_checkout>
+        <no_quantity>false</no_quantity>
+        <no_quantity_v2>false</no_quantity_v2>
+        <no_search>false</no_search>
+        <omit_price>false</omit_price>
+        <order>100</order>
+        <ordered_item_link/>
+        <picture/>
+        <preview>JavaScript: new CatalogItemVariable().getVariablesForPreview(current);</preview>
+        <price>0</price>
+        <recurring_frequency/>
+        <recurring_price>0</recurring_price>
+        <request_method/>
+        <roles>x_ibmin_idpbob.application_developer,x_ibmin_idpbob.platform_engineer</roles>
+        <sc_catalogs>c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1</sc_catalogs>
+        <sc_ic_item_staging/>
+        <sc_ic_version/>
+        <short_description>Register a new service in the IDP catalog with metadata and ownership</short_description>
+        <show_variable_help_on_load>false</show_variable_help_on_load>
+        <start_closed>false</start_closed>
+        <sys_class_name>sc_cat_item</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-02 06:50:00</sys_created_on>
+        <sys_id>b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Service Onboarding Request</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sc_cat_item_service_onboarding</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-02 06:50:00</sys_updated_on>
+        <template/>
+        <type>item</type>
+        <use_sc_layout>true</use_sc_layout>
+        <vendor/>
+        <visible_bundle>true</visible_bundle>
+        <visible_guide>true</visible_guide>
+        <visible_standalone>true</visible_standalone>
+        <workflow/>
+    </sc_cat_item>
+</record_update>
+
+<!-- Made with Bob -->

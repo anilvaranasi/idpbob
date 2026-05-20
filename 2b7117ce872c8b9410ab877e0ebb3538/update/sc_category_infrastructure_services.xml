@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_category">
+    <sc_category action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description><![CDATA[<p>Request infrastructure resources including compute, storage, networking, and database services.</p>
+<p><strong>Use this category for:</strong></p>
+<ul>
+<li>Kubernetes cluster provisioning</li>
+<li>Database instance creation</li>
+<li>Storage volume requests</li>
+<li>Network configuration</li>
+<li>Load balancer setup</li>
+</ul>]]></description>
+        <entitlement_script/>
+        <header_icon>server-line</header_icon>
+        <homepage_image/>
+        <homepage_renderer/>
+        <homepage_text/>
+        <icon>server-line</icon>
+        <image/>
+        <location>0</location>
+        <mobile_hide_description>false</mobile_hide_description>
+        <mobile_picture/>
+        <mobile_subcategory_render_type>list</mobile_subcategory_render_type>
+        <module/>
+        <order>200</order>
+        <parent/>
+        <roles/>
+        <sc_catalog display_value="IDP Service Catalog">c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1</sc_catalog>
+        <show_in_cms>false</show_in_cms>
+        <sys_class_name>sc_category</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-02 06:46:00</sys_created_on>
+        <sys_id>a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Infrastructure Services</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sc_category_infrastructure_services</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-02 06:46:00</sys_updated_on>
+        <title>Infrastructure Services</title>
+    </sc_category>
+</record_update>
+
+<!-- Made with Bob -->

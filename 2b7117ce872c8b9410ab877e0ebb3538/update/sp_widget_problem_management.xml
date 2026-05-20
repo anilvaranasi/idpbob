@@ -1,0 +1,880 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script><![CDATA[function($scope, $http, $location, spModal) {
+    var c = this;
+    
+    // Initialize filters
+    c.filters = {
+        priority: '',
+        state: '',
+        assignment_group: '',
+        category: '',
+        search: ''
+    };
+    
+    // Refresh data
+    c.refresh = function() {
+        c.server.get({
+            filters: c.filters
+        }).then(function(response) {
+            c.data.problems = response.data.problems;
+            c.data.metrics = response.data.metrics;
+        });
+    };
+    
+    // View problem details
+    c.viewProblem = function(problemId) {
+        spModal.open({
+            title: 'Problem Details',
+            widget: 'problem_detail_modal',
+            widgetInput: {
+                problem_id: problemId
+            },
+            size: 'lg'
+        }).then(function() {
+            c.refresh();
+        });
+    };
+    
+    // Create new problem
+    c.createProblem = function() {
+        spModal.open({
+            title: 'Create New Problem',
+            widget: 'problem_create_modal',
+            size: 'lg'
+        }).then(function() {
+            c.refresh();
+        });
+    };
+    
+    // View related incidents
+    c.viewRelatedIncidents = function(problem) {
+        spModal.open({
+            title: 'Related Incidents - ' + problem.number,
+            widget: 'related_incidents_modal',
+            widgetInput: {
+                problem_id: problem.sys_id
+            },
+            size: 'lg'
+        });
+    };
+    
+    // View known errors
+    c.viewKnownErrors = function(problem) {
+        spModal.open({
+            title: 'Known Errors - ' + problem.number,
+            widget: 'known_errors_modal',
+            widgetInput: {
+                problem_id: problem.sys_id
+            },
+            size: 'lg'
+        });
+    };
+    
+    // AI Root Cause Analysis
+    c.aiRootCauseAnalysis = function(problem) {
+        spModal.open({
+            title: 'AI Root Cause Analysis - ' + problem.number,
+            widget: 'ai_rca_assistant',
+            widgetInput: {
+                problem_id: problem.sys_id
+            },
+            size: 'lg'
+        });
+    };
+    
+    // Export problems
+    c.exportProblems = function() {
+        var csv = 'Number,Priority,State,Short Description,Category,Assignment Group,Created\n';
+        c.data.problems.forEach(function(prb) {
+            csv += prb.number + ',' + prb.priority + ',' + prb.state + ',' + 
+                   prb.short_description + ',' + prb.category + ',' + 
+                   prb.assignment_group + ',' + prb.sys_created_on + '\n';
+        });
+        var blob = new Blob([csv], { type: 'text/csv' });
+        var url = window.URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'problems_' + new Date().toISOString() + '.csv';
+        a.click();
+    };
+    
+    // Apply filters
+    c.applyFilters = function() {
+        c.refresh();
+    };
+    
+    // Clear filters
+    c.clearFilters = function() {
+        c.filters = {
+            priority: '',
+            state: '',
+            assignment_group: '',
+            category: '',
+            search: ''
+        };
+        c.refresh();
+    };
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css><![CDATA[.problem-management {
+    padding: var(--carbon-spacing-05);
+    background: var(--carbon-ui-background);
+}
+
+.page-header {
+    margin-bottom: var(--carbon-spacing-06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-header h1 {
+    color: var(--carbon-text-01);
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-03);
+    margin: 0;
+}
+
+.header-actions {
+    display: flex;
+    gap: var(--carbon-spacing-03);
+}
+
+.btn-primary {
+    background: var(--carbon-interactive-01);
+    color: white;
+    border: none;
+    padding: var(--carbon-spacing-03) var(--carbon-spacing-05);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-02);
+    transition: background 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #0353e9;
+}
+
+.btn-secondary {
+    background: var(--carbon-ui-01);
+    color: var(--carbon-text-01);
+    border: 1px solid var(--carbon-ui-04);
+    padding: var(--carbon-spacing-03) var(--carbon-spacing-05);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-02);
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: var(--carbon-hover-ui);
+}
+
+/* Metrics Cards */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--carbon-spacing-04);
+    margin-bottom: var(--carbon-spacing-06);
+}
+
+.metric-card {
+    background: var(--carbon-ui-01);
+    border: 1px solid var(--carbon-ui-03);
+    border-radius: 4px;
+    padding: var(--carbon-spacing-05);
+    text-align: center;
+}
+
+.metric-value {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--carbon-text-01);
+    margin-bottom: var(--carbon-spacing-02);
+}
+
+.metric-value.critical {
+    color: #da1e28;
+}
+
+.metric-value.high {
+    color: #ff832b;
+}
+
+.metric-value.medium {
+    color: #f1c21b;
+}
+
+.metric-value.good {
+    color: #24a148;
+}
+
+.metric-label {
+    font-size: 0.875rem;
+    color: var(--carbon-text-02);
+}
+
+.metric-sublabel {
+    font-size: 0.75rem;
+    color: var(--carbon-text-03);
+    margin-top: var(--carbon-spacing-02);
+}
+
+/* Filters Section */
+.filters-section {
+    background: var(--carbon-ui-01);
+    border: 1px solid var(--carbon-ui-03);
+    border-radius: 4px;
+    padding: var(--carbon-spacing-05);
+    margin-bottom: var(--carbon-spacing-05);
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--carbon-spacing-04);
+    margin-bottom: var(--carbon-spacing-04);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--carbon-spacing-02);
+}
+
+.filter-group label {
+    font-size: 0.75rem;
+    color: var(--carbon-text-02);
+    font-weight: 600;
+}
+
+.filter-group select,
+.filter-group input {
+    padding: var(--carbon-spacing-03);
+    border: 1px solid var(--carbon-ui-04);
+    border-radius: 4px;
+    background: var(--carbon-ui-background);
+    color: var(--carbon-text-01);
+    font-size: 0.875rem;
+}
+
+.filter-actions {
+    display: flex;
+    gap: var(--carbon-spacing-03);
+    justify-content: flex-end;
+}
+
+/* Problems Table */
+.problems-table-container {
+    background: var(--carbon-ui-01);
+    border: 1px solid var(--carbon-ui-03);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.table-header {
+    padding: var(--carbon-spacing-04) var(--carbon-spacing-05);
+    background: var(--carbon-ui-02);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--carbon-ui-03);
+}
+
+.table-header h2 {
+    font-size: 1.125rem;
+    color: var(--carbon-text-01);
+    margin: 0;
+}
+
+.problems-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.problems-table thead {
+    background: var(--carbon-ui-02);
+}
+
+.problems-table th {
+    padding: var(--carbon-spacing-04);
+    text-align: left;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--carbon-text-02);
+    border-bottom: 1px solid var(--carbon-ui-03);
+}
+
+.problems-table tbody tr {
+    border-bottom: 1px solid var(--carbon-ui-03);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.problems-table tbody tr:hover {
+    background: var(--carbon-hover-ui);
+}
+
+.problems-table td {
+    padding: var(--carbon-spacing-04);
+    font-size: 0.875rem;
+    color: var(--carbon-text-01);
+}
+
+/* Priority Badge */
+.priority-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.priority-badge.p1-critical {
+    background: #da1e28;
+    color: white;
+}
+
+.priority-badge.p2-high {
+    background: #ff832b;
+    color: white;
+}
+
+.priority-badge.p3-moderate {
+    background: #f1c21b;
+    color: black;
+}
+
+.priority-badge.p4-low {
+    background: #24a148;
+    color: white;
+}
+
+/* State Badge */
+.state-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.state-badge.new {
+    background: #e0e0e0;
+    color: #161616;
+}
+
+.state-badge.assess {
+    background: #0f62fe;
+    color: white;
+}
+
+.state-badge.rca {
+    background: #8a3ffc;
+    color: white;
+}
+
+.state-badge.fix-in-progress {
+    background: #f1c21b;
+    color: black;
+}
+
+.state-badge.resolved {
+    background: #24a148;
+    color: white;
+}
+
+.state-badge.closed {
+    background: #8d8d8d;
+    color: white;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: var(--carbon-spacing-02);
+}
+
+.action-btn {
+    background: var(--carbon-ui-01);
+    border: 1px solid var(--carbon-ui-04);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--carbon-spacing-02);
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    background: var(--carbon-hover-ui);
+    border-color: var(--carbon-interactive-01);
+}
+
+.ai-rca-btn {
+    background: linear-gradient(135deg, #8a3ffc 0%, #0f62fe 100%);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--carbon-spacing-02);
+    transition: opacity 0.2s ease;
+}
+
+.ai-rca-btn:hover {
+    opacity: 0.9;
+}
+
+/* Related Items Badge */
+.related-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--carbon-spacing-02);
+    padding: 2px 8px;
+    background: var(--carbon-ui-02);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    color: var(--carbon-text-02);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: var(--carbon-spacing-09);
+    color: var(--carbon-text-02);
+}
+
+.empty-state i {
+    font-size: 4rem;
+    color: var(--carbon-ui-04);
+    margin-bottom: var(--carbon-spacing-04);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--carbon-spacing-04);
+    }
+    
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .filters-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .problems-table {
+        font-size: 0.75rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+}]]></css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Problem Management Dashboard with AI Root Cause Analysis</description>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>problem_management</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {}]]></link>
+        <name>Problem Management</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_ibmin_idpbob.sre,x_ibmin_idpbob.servicenow_admin</roles>
+        <script><![CDATA[(function() {
+    // Get current user
+    data.user = gs.getUser();
+    data.userName = data.user.getDisplayName();
+    
+    // Get filter parameters
+    var filters = input.filters || {};
+    
+    // Build query for problems
+    var prbGr = new GlideRecord('problem');
+    prbGr.addActiveQuery();
+    
+    // Apply filters
+    if (filters.priority) {
+        prbGr.addQuery('priority', filters.priority);
+    }
+    if (filters.state) {
+        prbGr.addQuery('state', filters.state);
+    }
+    if (filters.assignment_group) {
+        prbGr.addQuery('assignment_group', filters.assignment_group);
+    }
+    if (filters.category) {
+        prbGr.addQuery('category', filters.category);
+    }
+    if (filters.search) {
+        var qc = prbGr.addQuery('number', 'CONTAINS', filters.search);
+        qc.addOrCondition('short_description', 'CONTAINS', filters.search);
+        qc.addOrCondition('description', 'CONTAINS', filters.search);
+    }
+    
+    prbGr.orderByDesc('sys_created_on');
+    prbGr.setLimit(100);
+    prbGr.query();
+    
+    // Collect problems
+    data.problems = [];
+    while (prbGr.next()) {
+        // Count related incidents
+        var incCount = new GlideAggregate('incident');
+        incCount.addQuery('problem_id', prbGr.getValue('sys_id'));
+        incCount.addAggregate('COUNT');
+        incCount.query();
+        var relatedIncidents = 0;
+        if (incCount.next()) {
+            relatedIncidents = parseInt(incCount.getAggregate('COUNT'));
+        }
+        
+        // Count known errors
+        var keCount = new GlideAggregate('problem_task');
+        keCount.addQuery('problem', prbGr.getValue('sys_id'));
+        keCount.addQuery('type', 'known_error');
+        keCount.addAggregate('COUNT');
+        keCount.query();
+        var knownErrors = 0;
+        if (keCount.next()) {
+            knownErrors = parseInt(keCount.getAggregate('COUNT'));
+        }
+        
+        data.problems.push({
+            sys_id: prbGr.getValue('sys_id'),
+            number: prbGr.getValue('number'),
+            priority: prbGr.getDisplayValue('priority'),
+            priority_value: prbGr.getValue('priority'),
+            state: prbGr.getDisplayValue('state'),
+            state_value: prbGr.getValue('state'),
+            short_description: prbGr.getValue('short_description'),
+            assigned_to: prbGr.getDisplayValue('assigned_to') || 'Unassigned',
+            assignment_group: prbGr.getDisplayValue('assignment_group') || 'Unassigned',
+            category: prbGr.getDisplayValue('category') || 'Uncategorized',
+            sys_created_on: prbGr.getDisplayValue('sys_created_on'),
+            related_incidents: relatedIncidents,
+            known_errors: knownErrors,
+            impact: prbGr.getDisplayValue('impact'),
+            urgency: prbGr.getDisplayValue('urgency')
+        });
+    }
+    
+    // Calculate metrics
+    data.metrics = {
+        total: 0,
+        critical: 0,
+        high: 0,
+        new: 0,
+        rca_in_progress: 0,
+        resolved_this_month: 0,
+        avg_resolution_days: 0
+    };
+    
+    // Count by priority
+    var priorityGr = new GlideAggregate('problem');
+    priorityGr.addActiveQuery();
+    priorityGr.addAggregate('COUNT');
+    priorityGr.groupBy('priority');
+    priorityGr.query();
+    
+    while (priorityGr.next()) {
+        var priority = priorityGr.getValue('priority');
+        var count = parseInt(priorityGr.getAggregate('COUNT'));
+        data.metrics.total += count;
+        
+        if (priority == '1') data.metrics.critical = count;
+        else if (priority == '2') data.metrics.high = count;
+    }
+    
+    // Count by state
+    var stateGr = new GlideAggregate('problem');
+    stateGr.addActiveQuery();
+    stateGr.addAggregate('COUNT');
+    stateGr.groupBy('state');
+    stateGr.query();
+    
+    while (stateGr.next()) {
+        var state = stateGr.getValue('state');
+        var count = parseInt(stateGr.getAggregate('COUNT'));
+        
+        if (state == '1') data.metrics.new = count;
+        else if (state == '3') data.metrics.rca_in_progress = count;
+    }
+    
+    // Resolved this month
+    var resolvedGr = new GlideAggregate('problem');
+    resolvedGr.addQuery('resolved_at', '>=', gs.monthsAgoStart(0));
+    resolvedGr.addAggregate('COUNT');
+    resolvedGr.query();
+    
+    if (resolvedGr.next()) {
+        data.metrics.resolved_this_month = parseInt(resolvedGr.getAggregate('COUNT'));
+    }
+    
+    // Get assignment groups for filter
+    data.assignment_groups = [];
+    var grpGr = new GlideRecord('sys_user_group');
+    grpGr.addQuery('active', true);
+    grpGr.orderBy('name');
+    grpGr.query();
+    
+    while (grpGr.next()) {
+        data.assignment_groups.push({
+            sys_id: grpGr.getValue('sys_id'),
+            name: grpGr.getValue('name')
+        });
+    }
+    
+    // Get categories for filter
+    data.categories = [];
+    var catGr = new GlideRecord('problem');
+    catGr.addActiveQuery();
+    catGr.groupBy('category');
+    catGr.query();
+    
+    while (catGr.next()) {
+        var cat = catGr.getDisplayValue('category');
+        if (cat) {
+            data.categories.push(cat);
+        }
+    }
+    
+    // Priority options
+    data.priority_options = [
+        {value: '1', label: '1 - Critical'},
+        {value: '2', label: '2 - High'},
+        {value: '3', label: '3 - Moderate'},
+        {value: '4', label: '4 - Low'}
+    ];
+    
+    // State options
+    data.state_options = [
+        {value: '1', label: 'New'},
+        {value: '2', label: 'Assess'},
+        {value: '3', label: 'Root Cause Analysis'},
+        {value: '4', label: 'Fix in Progress'},
+        {value: '6', label: 'Resolved'},
+        {value: '7', label: 'Closed'}
+    ];
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-20 12:30:00</sys_created_on>
+        <sys_id>prb001prb001prb001prb001prb001prb001</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Problem Management</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sp_widget_problem_management</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-20 12:30:00</sys_updated_on>
+        <template><![CDATA[<div class="problem-management">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>
+            <i class="fa fa-puzzle-piece"></i>
+            Problem Management
+        </h1>
+        <div class="header-actions">
+            <button class="btn-secondary" ng-click="c.refresh()">
+                <i class="fa fa-refresh"></i>
+                Refresh
+            </button>
+            <button class="btn-secondary" ng-click="c.exportProblems()">
+                <i class="fa fa-download"></i>
+                Export
+            </button>
+            <button class="btn-primary" ng-click="c.createProblem()">
+                <i class="fa fa-plus"></i>
+                Create Problem
+            </button>
+        </div>
+    </div>
+    
+    <!-- Metrics Dashboard -->
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-value">{{data.metrics.total}}</div>
+            <div class="metric-label">Total Open</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value critical">{{data.metrics.critical}}</div>
+            <div class="metric-label">Critical (P1)</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value high">{{data.metrics.high}}</div>
+            <div class="metric-label">High (P2)</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">{{data.metrics.new}}</div>
+            <div class="metric-label">New Problems</div>
+            <div class="metric-sublabel">Awaiting Assessment</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">{{data.metrics.rca_in_progress}}</div>
+            <div class="metric-label">RCA In Progress</div>
+            <div class="metric-sublabel">Root Cause Analysis</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value good">{{data.metrics.resolved_this_month}}</div>
+            <div class="metric-label">Resolved This Month</div>
+        </div>
+    </div>
+    
+    <!-- Filters Section -->
+    <div class="filters-section">
+        <div class="filters-grid">
+            <div class="filter-group">
+                <label>Priority</label>
+                <select ng-model="c.filters.priority">
+                    <option value="">All Priorities</option>
+                    <option ng-repeat="opt in data.priority_options" value="{{opt.value}}">{{opt.label}}</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>State</label>
+                <select ng-model="c.filters.state">
+                    <option value="">All States</option>
+                    <option ng-repeat="opt in data.state_options" value="{{opt.value}}">{{opt.label}}</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Assignment Group</label>
+                <select ng-model="c.filters.assignment_group">
+                    <option value="">All Groups</option>
+                    <option ng-repeat="grp in data.assignment_groups" value="{{grp.sys_id}}">{{grp.name}}</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Category</label>
+                <select ng-model="c.filters.category">
+                    <option value="">All Categories</option>
+                    <option ng-repeat="cat in data.categories" value="{{cat}}">{{cat}}</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Search</label>
+                <input type="text" ng-model="c.filters.search" placeholder="Search problems...">
+            </div>
+        </div>
+        <div class="filter-actions">
+            <button class="btn-secondary" ng-click="c.clearFilters()">Clear Filters</button>
+            <button class="btn-primary" ng-click="c.applyFilters()">Apply Filters</button>
+        </div>
+    </div>
+    
+    <!-- Problems Table -->
+    <div class="problems-table-container">
+        <div class="table-header">
+            <h2>Problems ({{data.problems.length}})</h2>
+        </div>
+        
+        <table class="problems-table" ng-if="data.problems.length > 0">
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Priority</th>
+                    <th>State</th>
+                    <th>Short Description</th>
+                    <th>Category</th>
+                    <th>Assignment Group</th>
+                    <th>Related Items</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="problem in data.problems" ng-click="c.viewProblem(problem.sys_id)">
+                    <td><strong>{{problem.number}}</strong></td>
+                    <td>
+                        <span class="priority-badge" ng-class="{
+                            'p1-critical': problem.priority_value == '1',
+                            'p2-high': problem.priority_value == '2',
+                            'p3-moderate': problem.priority_value == '3',
+                            'p4-low': problem.priority_value == '4'
+                        }">
+                            {{problem.priority}}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="state-badge" ng-class="{
+                            'new': problem.state_value == '1',
+                            'assess': problem.state_value == '2',
+                            'rca': problem.state_value == '3',
+                            'fix-in-progress': problem.state_value == '4',
+                            'resolved': problem.state_value == '6',
+                            'closed': problem.state_value == '7'
+                        }">
+                            {{problem.state}}
+                        </span>
+                    </td>
+                    <td>{{problem.short_description}}</td>
+                    <td>{{problem.category}}</td>
+                    <td>{{problem.assignment_group}}</td>
+                    <td>
+                        <div style="display: flex; gap: var(--carbon-spacing-02);">
+                            <span class="related-badge" ng-if="problem.related_incidents > 0">
+                                <i class="fa fa-exclamation-triangle"></i>
+                                {{problem.related_incidents}} Incidents
+                            </span>
+                            <span class="related-badge" ng-if="problem.known_errors > 0">
+                                <i class="fa fa-lightbulb-o"></i>
+                                {{problem.known_errors}} KE
+                            </span>
+                        </div>
+                    </td>
+                    <td>{{problem.sys_created_on}}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn" ng-click="c.viewRelatedIncidents(problem); $event.stopPropagation();" title="View Related Incidents">
+                                <i class="fa fa-link"></i>
+                            </button>
+                            <button class="action-btn" ng-click="c.viewKnownErrors(problem); $event.stopPropagation();" title="View Known Errors">
+                                <i class="fa fa-lightbulb-o"></i>
+                            </button>
+                            <button class="ai-rca-btn" ng-click="c.aiRootCauseAnalysis(problem); $event.stopPropagation();">
+                                <i class="fa fa-magic"></i>
+                                AI RCA
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="empty-state" ng-if="data.problems.length == 0">
+            <i class="fa fa-puzzle-piece"></i>
+            <h3>No problems found</h3>
+            <p>Try adjusting your filters or create a new problem record.</p>
+        </div>
+    </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
+
+<!-- Made with Bob -->

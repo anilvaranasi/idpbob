@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category/>
+        <client_script><![CDATA[function($scope, $location) {
+    var c = this;
+    
+    c.navigateTo = function(path) {
+        $location.path(path);
+    };
+    
+    c.orderService = function(itemId) {
+        $location.path('/sc_cat_item').search({sys_id: itemId});
+    };
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css><![CDATA[.platform-dashboard {
+    padding: var(--carbon-spacing-05);
+}
+
+.dashboard-header {
+    margin-bottom: var(--carbon-spacing-06);
+}
+
+.dashboard-header h1 {
+    color: var(--carbon-text-01);
+    font-size: 2rem;
+    margin-bottom: var(--carbon-spacing-03);
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-03);
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--carbon-spacing-05);
+    margin-bottom: var(--carbon-spacing-06);
+}
+
+.dashboard-card {
+    background: var(--carbon-ui-01);
+    border: 1px solid var(--carbon-ui-03);
+    border-radius: 4px;
+    padding: var(--carbon-spacing-05);
+}
+
+.dashboard-card h2 {
+    color: var(--carbon-text-01);
+    font-size: 1.25rem;
+    margin-bottom: var(--carbon-spacing-04);
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-03);
+}
+
+.quick-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--carbon-spacing-03);
+}
+
+.quick-link {
+    display: flex;
+    align-items: center;
+    gap: var(--carbon-spacing-03);
+    padding: var(--carbon-spacing-03);
+    background: var(--carbon-ui-background);
+    border: 1px solid var(--carbon-ui-03);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: var(--carbon-text-01);
+}
+
+.quick-link:hover {
+    border-color: var(--carbon-interactive-01);
+    background: var(--carbon-hover-ui);
+}
+
+.metric-card {
+    background: var(--carbon-ui-background);
+    border: 1px solid var(--carbon-ui-03);
+    border-radius: 4px;
+    padding: var(--carbon-spacing-04);
+    text-align: center;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--carbon-text-01);
+}
+
+.metric-label {
+    font-size: 0.875rem;
+    color: var(--carbon-text-02);
+    margin-top: var(--carbon-spacing-02);
+}]]></css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Platform Engineer Dashboard Widget</description>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>platform_dashboard</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {}]]></link>
+        <name>Platform Dashboard</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_ibmin_idpbob.platform_engineer</roles>
+        <script><![CDATA[(function() {
+    data.user = gs.getUser();
+    data.userName = data.user.getDisplayName();
+    
+    // Platform metrics (mock data - replace with actual queries)
+    data.metrics = {
+        activeInfrastructure: 45,
+        automationJobs: 128,
+        resourceUtilization: 73,
+        pendingChanges: 8
+    };
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2026-05-02 06:15:00</sys_created_on>
+        <sys_id>d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Platform Dashboard</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sp_widget_platform_dashboard</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-05-02 06:15:00</sys_updated_on>
+        <template><![CDATA[<div class="platform-dashboard">
+    <div class="dashboard-header">
+        <h1>
+            <i class="fa fa-server"></i>
+            Platform Engineer Portal
+        </h1>
+        <p>Welcome back, {{data.userName}}! Manage infrastructure and platform services.</p>
+    </div>
+    
+    <!-- Platform Metrics -->
+    <div class="dashboard-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: var(--carbon-spacing-05);">
+        <div class="metric-card">
+            <div class="metric-value">{{data.metrics.activeInfrastructure}}</div>
+            <div class="metric-label">Active Infrastructure</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">{{data.metrics.automationJobs}}</div>
+            <div class="metric-label">Automation Jobs</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">{{data.metrics.resourceUtilization}}%</div>
+            <div class="metric-label">Resource Utilization</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">{{data.metrics.pendingChanges}}</div>
+            <div class="metric-label">Pending Changes</div>
+        </div>
+    </div>
+    
+    <div class="dashboard-grid">
+        <!-- Infrastructure Management -->
+        <div class="dashboard-card">
+            <h2><i class="fa fa-cubes"></i> Infrastructure Management</h2>
+            <div class="quick-links">
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/service_catalog')" class="quick-link">
+                    <i class="fa fa-plus-circle"></i>
+                    <span>Provision Infrastructure</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/infrastructure')" class="quick-link">
+                    <i class="fa fa-list"></i>
+                    <span>View All Infrastructure</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/iac')" class="quick-link">
+                    <i class="fa fa-code"></i>
+                    <span>Infrastructure as Code</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/capacity')" class="quick-link">
+                    <i class="fa fa-bar-chart"></i>
+                    <span>Capacity Planning</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Platform Services -->
+        <div class="dashboard-card">
+            <h2><i class="fa fa-cogs"></i> Platform Services</h2>
+            <div class="quick-links">
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/kubernetes')" class="quick-link">
+                    <i class="fa fa-ship"></i>
+                    <span>Kubernetes Clusters</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/databases')" class="quick-link">
+                    <i class="fa fa-database"></i>
+                    <span>Database Services</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/networking')" class="quick-link">
+                    <i class="fa fa-sitemap"></i>
+                    <span>Network Configuration</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/storage')" class="quick-link">
+                    <i class="fa fa-hdd-o"></i>
+                    <span>Storage Management</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Automation & Tools -->
+        <div class="dashboard-card">
+            <h2><i class="fa fa-magic"></i> Automation & Tools</h2>
+            <div class="quick-links">
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/automation')" class="quick-link">
+                    <i class="fa fa-robot"></i>
+                    <span>Automation Workflows</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/cicd')" class="quick-link">
+                    <i class="fa fa-refresh"></i>
+                    <span>CI/CD Pipelines</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/terraform')" class="quick-link">
+                    <i class="fa fa-file-code-o"></i>
+                    <span>Terraform Modules</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/ansible')" class="quick-link">
+                    <i class="fa fa-play-circle"></i>
+                    <span>Ansible Playbooks</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Observability -->
+        <div class="dashboard-card">
+            <h2><i class="fa fa-eye"></i> Observability</h2>
+            <div class="quick-links">
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/monitoring')" class="quick-link">
+                    <i class="fa fa-line-chart"></i>
+                    <span>Monitoring Dashboards</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/logs')" class="quick-link">
+                    <i class="fa fa-file-text-o"></i>
+                    <span>Log Aggregation</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/tracing')" class="quick-link">
+                    <i class="fa fa-random"></i>
+                    <span>Distributed Tracing</span>
+                </a>
+                <a href="javascript:void(0)" ng-click="c.navigateTo('/alerts')" class="quick-link">
+                    <i class="fa fa-bell"></i>
+                    <span>Alert Configuration</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
+
+<!-- Made with Bob -->

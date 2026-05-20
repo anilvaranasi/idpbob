@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role">
+    <sys_embedded_help_role action="INSERT_OR_UPDATE">
+        <order>600</order>
+        <role display_value="x_ibmin_idpbob.servicenow_admin" name="x_ibmin_idpbob.servicenow_admin">a6b6c6d6e6f6a6b6c6d6e6f6a6b6c6d6</role>
+        <sys_class_name>sys_embedded_help_role</sys_class_name>
+        <sys_created_by>srinivas.anil.kumar.varanasi@ibm.com</sys_created_by>
+        <sys_created_on>2026-05-01 09:30:00</sys_created_on>
+        <sys_id>b6b6c6d6e6f6a6b6c6d6e6f6a6b6c6d6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>a6b6c6d6e6f6a6b6c6d6e6f6a6b6c6d6</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>sys_embedded_help_role_servicenow_admin</sys_update_name>
+        <sys_updated_by>srinivas.anil.kumar.varanasi@ibm.com</sys_updated_by>
+        <sys_updated_on>2026-05-01 09:30:00</sys_updated_on>
+    </sys_embedded_help_role>
+</record_update>
