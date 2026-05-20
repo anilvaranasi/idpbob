@@ -4,7 +4,6 @@
         <can_delegate>true</can_delegate>
         <description>Role for Application Developers who build and maintain applications on the platform</description>
         <elevated_privilege>false</elevated_privilege>
-        <encryption_context/>
         <federated_id>PFlTVGnhGCQIaQEBhfBoEXWB7vV5Z49ILOrsBr+St80=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>

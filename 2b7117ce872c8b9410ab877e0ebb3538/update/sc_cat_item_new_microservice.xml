@@ -1,49 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item">
     <sc_cat_item action="INSERT_OR_UPDATE">
+        <access_type/>
         <active>true</active>
         <availability>on_desktop</availability>
         <billable>false</billable>
-        <category display_value="Application Services">d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1</category>
+        <category display_value="">d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1</category>
+        <checked_out/>
         <cost>0</cost>
         <custom_cart/>
         <delivery_plan/>
         <delivery_plan_script/>
-        <delivery_time>0</delivery_time>
+        <delivery_time>2026-05-20 15:21:28</delivery_time>
         <description><![CDATA[<h3>New Microservice Creation</h3>
 <p>Create a new microservice with standardized templates, CI/CD pipeline, and infrastructure.</p>
 
-<h4>What You'll Get:</h4>
-<ul>
-<li>GitLab repository with service template</li>
-<li>CI/CD pipeline configured (GitLab CI)</li>
-<li>Kubernetes deployment manifests</li>
-<li>Service mesh integration (Istio)</li>
-<li>Observability stack (Prometheus, Grafana, Jaeger)</li>
-<li>API documentation (OpenAPI/Swagger)</li>
-<li>Security scanning enabled (SAST, DAST, SCA)</li>
-</ul>
+<h4>What You&#39;ll Get:</h4>
+<ul><li>GitLab repository with service template</li><li>CI/CD pipeline configured (GitLab CI)</li><li>Kubernetes deployment manifests</li><li>Service mesh integration (Istio)</li><li>Observability stack (Prometheus, Grafana, Jaeger)</li><li>API documentation (OpenAPI/Swagger)</li><li>Security scanning enabled (SAST, DAST, SCA)</li></ul>
 
 <h4>Prerequisites:</h4>
-<ul>
-<li>Service name and description</li>
-<li>Technology stack selection (Node.js, Python, Java, Go)</li>
-<li>Team ownership</li>
-<li>Resource requirements (CPU, memory)</li>
-</ul>
+<ul><li>Service name and description</li><li>Technology stack selection (Node.js, Python, Java, Go)</li><li>Team ownership</li><li>Resource requirements (CPU, memory)</li></ul>
 
 <h4>Approval Process:</h4>
 <p>Platform Engineer approval required for infrastructure provisioning.</p>
 
 <h4>SLA:</h4>
-<ul>
-<li><strong>Fulfillment Time:</strong> 4 business hours</li>
-<li><strong>Response Time:</strong> 1 hour</li>
-</ul>
+<ul><li><strong>Fulfillment Time:</strong> 4 business hours</li><li><strong>Response Time:</strong> 1 hour</li></ul>
 
 <h4>Tags:</h4>
 <p>microservice, kubernetes, ci-cd, gitlab, service-mesh, golden-path</p>]]></description>
+        <display_price_property>non_zero</display_price_property>
         <entitlement_script/>
         <flow_designer_flow/>
+        <fulfillment_automation_level/>
         <group/>
         <hide_sp>false</hide_sp>
         <icon>code</icon>
@@ -51,6 +39,7 @@
         <image/>
         <list_price>0</list_price>
         <location/>
+        <make_item_non_conversational>false</make_item_non_conversational>
         <mandatory_attachment>false</mandatory_attachment>
         <meta/>
         <mobile_hide_price>false</mobile_hide_price>
@@ -67,13 +56,17 @@
         <no_proceed_checkout>false</no_proceed_checkout>
         <no_quantity>false</no_quantity>
         <no_quantity_v2>false</no_quantity_v2>
+        <no_save_as_draft>false</no_save_as_draft>
         <no_search>false</no_search>
+        <no_wishlist_v2>false</no_wishlist_v2>
         <omit_price>false</omit_price>
         <order>200</order>
         <ordered_item_link/>
+        <owner/>
         <picture/>
-        <preview>JavaScript: new CatalogItemVariable().getVariablesForPreview(current);</preview>
+        <preview>JavaScript: popupOpenStandard("com.glideapp.servicecatalog_cat_item_view.do?v=1&amp;sysparm_id=b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2&amp;sysparm_preview=true", "summary");</preview>
         <price>0</price>
+        <published_ref/>
         <recurring_frequency/>
         <recurring_price>0</recurring_price>
         <request_method/>
@@ -81,9 +74,12 @@
         <sc_catalogs>c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1</sc_catalogs>
         <sc_ic_item_staging/>
         <sc_ic_version/>
+        <sc_template/>
+        <secondary_owners/>
         <short_description>Create a new microservice with standardized templates and CI/CD pipeline</short_description>
         <show_variable_help_on_load>false</show_variable_help_on_load>
         <start_closed>false</start_closed>
+        <state/>
         <sys_class_name>sc_cat_item</sys_class_name>
         <sys_created_by>system</sys_created_by>
         <sys_created_on>2026-05-02 06:51:00</sys_created_on>
@@ -96,15 +92,52 @@
         <sys_update_name>sc_cat_item_new_microservice</sys_update_name>
         <sys_updated_by>system</sys_updated_by>
         <sys_updated_on>2026-05-02 06:51:00</sys_updated_on>
+        <taxonomy_topic/>
         <template/>
+        <template_manager_roles/>
         <type>item</type>
         <use_sc_layout>true</use_sc_layout>
         <vendor/>
+        <version/>
         <visible_bundle>true</visible_bundle>
         <visible_guide>true</visible_guide>
         <visible_standalone>true</visible_standalone>
         <workflow/>
     </sc_cat_item>
+    <sys_translated_text action="delete_multiple" query="documentkey=b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2"/>
+    <fx_price action="delete_multiple" query="id=b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2"/>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>0</amount>
+        <currency display_value="USD">USD</currency>
+        <field>price</field>
+        <id>b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2</id>
+        <parent/>
+        <reference_amount>0</reference_amount>
+        <reference_currency display_value="USD">USD</reference_currency>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-05-20 15:21:29</sys_created_on>
+        <sys_id>fda60714c3098310f6ebf8ddd401311a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-05-20 15:21:29</sys_updated_on>
+        <table>sc_cat_item</table>
+        <type>calculated</type>
+    </fx_price>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>0</amount>
+        <currency display_value="USD">USD</currency>
+        <field>recurring_price</field>
+        <id>b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2</id>
+        <parent/>
+        <reference_amount>0</reference_amount>
+        <reference_currency display_value="USD">USD</reference_currency>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-05-20 15:21:29</sys_created_on>
+        <sys_id>39a60714c3098310f6ebf8ddd401311b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-05-20 15:21:29</sys_updated_on>
+        <table>sc_cat_item</table>
+        <type>calculated</type>
+    </fx_price>
 </record_update>
-
-<!-- Made with Bob -->

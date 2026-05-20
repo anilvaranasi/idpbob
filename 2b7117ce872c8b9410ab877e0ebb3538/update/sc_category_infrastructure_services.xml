@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sc_category">
     <sc_category action="INSERT_OR_UPDATE">
         <active>true</active>
-        <description><![CDATA[<p>Request infrastructure resources including compute, storage, networking, and database services.</p>
-<p><strong>Use this category for:</strong></p>
-<ul>
-<li>Kubernetes cluster provisioning</li>
-<li>Database instance creation</li>
-<li>Storage volume requests</li>
-<li>Network configuration</li>
-<li>Load balancer setup</li>
-</ul>]]></description>
+        <description>&lt;p&gt;Request infrastructure resources including compute, storage, networking, and database services.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Use this category for:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Kubernetes cluster provisioning&lt;/li&gt;
+&lt;li&gt;Database instance creation&lt;/li&gt;
+&lt;li&gt;Storage volume requests&lt;/li&gt;
+&lt;li&gt;Network configuration&lt;/li&gt;
+&lt;li&gt;Load balancer setup&lt;/li&gt;
+&lt;/ul&gt;</description>
         <entitlement_script/>
         <header_icon>server-line</header_icon>
         <homepage_image/>
         <homepage_renderer/>
-        <homepage_text/>
         <icon>server-line</icon>
         <image/>
-        <location>0</location>
+        <location display_value="">0</location>
         <mobile_hide_description>false</mobile_hide_description>
         <mobile_picture/>
         <mobile_subcategory_render_type>list</mobile_subcategory_render_type>
@@ -26,7 +25,6 @@
         <parent/>
         <roles/>
         <sc_catalog display_value="IDP Service Catalog">c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1</sc_catalog>
-        <show_in_cms>false</show_in_cms>
         <sys_class_name>sc_category</sys_class_name>
         <sys_created_by>system</sys_created_by>
         <sys_created_on>2026-05-02 06:46:00</sys_created_on>
@@ -41,6 +39,5 @@
         <sys_updated_on>2026-05-02 06:46:00</sys_updated_on>
         <title>Infrastructure Services</title>
     </sc_category>
+    <sys_translated_text action="delete_multiple" query="documentkey=a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3a3"/>
 </record_update>
-
-<!-- Made with Bob -->

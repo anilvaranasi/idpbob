@@ -4,7 +4,6 @@
         <can_delegate>true</can_delegate>
         <description>Role for Product Owners / Engineering Managers who oversee product development and team management</description>
         <elevated_privilege>false</elevated_privilege>
-        <encryption_context/>
         <federated_id>JuCCpSAG6DOBDfTzdrvsVbVuSsu79Xit696XgPZ6Zcc=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>

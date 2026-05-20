@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sc_category">
     <sc_category action="INSERT_OR_UPDATE">
         <active>true</active>
-        <description><![CDATA[<p>Request observability and monitoring services including dashboards, alerts, logging, and tracing.</p>
-<p><strong>Use this category for:</strong></p>
-<ul>
-<li>Monitoring dashboard creation</li>
-<li>Alert configuration</li>
-<li>Log aggregation setup</li>
-<li>Distributed tracing</li>
-<li>APM integration</li>
-</ul>]]></description>
+        <description>&lt;p&gt;Request observability and monitoring services including dashboards, alerts, logging, and tracing.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Use this category for:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Monitoring dashboard creation&lt;/li&gt;
+&lt;li&gt;Alert configuration&lt;/li&gt;
+&lt;li&gt;Log aggregation setup&lt;/li&gt;
+&lt;li&gt;Distributed tracing&lt;/li&gt;
+&lt;li&gt;APM integration&lt;/li&gt;
+&lt;/ul&gt;</description>
         <entitlement_script/>
         <header_icon>line-chart-line</header_icon>
         <homepage_image/>
         <homepage_renderer/>
-        <homepage_text/>
         <icon>line-chart-line</icon>
         <image/>
-        <location>0</location>
+        <location display_value="">0</location>
         <mobile_hide_description>false</mobile_hide_description>
         <mobile_picture/>
         <mobile_subcategory_render_type>list</mobile_subcategory_render_type>
@@ -26,7 +25,6 @@
         <parent/>
         <roles/>
         <sc_catalog display_value="IDP Service Catalog">c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1</sc_catalog>
-        <show_in_cms>false</show_in_cms>
         <sys_class_name>sc_category</sys_class_name>
         <sys_created_by>system</sys_created_by>
         <sys_created_on>2026-05-02 06:49:00</sys_created_on>
@@ -41,6 +39,5 @@
         <sys_updated_on>2026-05-02 06:49:00</sys_updated_on>
         <title>Observability Services</title>
     </sc_category>
+    <sys_translated_text action="delete_multiple" query="documentkey=a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6a6"/>
 </record_update>
-
-<!-- Made with Bob -->

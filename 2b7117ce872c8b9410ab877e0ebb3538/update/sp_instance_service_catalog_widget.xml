@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
     <sp_instance action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <advanced_placeholder_dimensions>false</advanced_placeholder_dimensions>
+        <async_load>false</async_load>
+        <async_load_device_type/>
+        <async_load_trigger/>
         <class_name/>
         <color>default</color>
         <css/>
-        <data_table>sp_instance</data_table>
-        <footer/>
         <glyph/>
-        <header/>
+        <id/>
         <order>0</order>
+        <placeholder_dimensions/>
+        <placeholder_dimensions_script/>
+        <placeholder_template/>
+        <preserve_placeholder_size>false</preserve_placeholder_size>
         <roles/>
         <short_description>Service Catalog Widget Instance</short_description>
         <size>12</size>
-        <sp_column display_value="Service Catalog Column">c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8</sp_column>
+        <sp_column display_value="0">c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8</sp_column>
         <sp_widget display_value="Service Catalog Content">c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7</sp_widget>
         <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>system</sys_created_by>
@@ -29,6 +36,5 @@
         <url/>
         <widget_parameters/>
     </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9c9"/>
 </record_update>
-
-<!-- Made with Bob -->

@@ -38,7 +38,7 @@
     c.searchQuery = '';
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css><![CDATA[.service-catalog-container {
+        <css>.service-catalog-container {
     padding: var(--carbon-spacing-05);
 }
 
@@ -207,7 +207,7 @@
     font-size: 0.75rem;
     color: var(--carbon-text-02);
     margin-bottom: var(--carbon-spacing-03);
-}]]></css>
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description>Service Catalog Content Widget - Display IDP catalog items</description>
@@ -370,5 +370,3 @@
 </div>]]></template>
     </sp_widget>
 </record_update>
-
-<!-- Made with Bob -->

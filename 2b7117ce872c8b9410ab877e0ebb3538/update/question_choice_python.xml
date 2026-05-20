@@ -2,7 +2,8 @@
     <question_choice action="INSERT_OR_UPDATE">
         <inactive>false</inactive>
         <order>200</order>
-        <question display_value="Technology Stack">f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3</question>
+        <published_ref/>
+        <question display_value="What technology stack will you use?">f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3</question>
         <sys_class_name>question_choice</sys_class_name>
         <sys_created_by>system</sys_created_by>
         <sys_created_on>2026-05-01 15:00:00</sys_created_on>
@@ -18,6 +19,5 @@
         <text>Python (Django/Flask)</text>
         <value>python</value>
     </question_choice>
+    <fx_price action="delete_multiple" query="id=f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5"/>
 </record_update>
-
-<!-- Made with Bob -->

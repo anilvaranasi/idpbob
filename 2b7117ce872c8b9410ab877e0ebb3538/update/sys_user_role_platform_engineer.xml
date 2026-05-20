@@ -4,7 +4,6 @@
         <can_delegate>true</can_delegate>
         <description>Role for Platform Engineers who manage and maintain the platform infrastructure</description>
         <elevated_privilege>false</elevated_privilege>
-        <encryption_context/>
         <federated_id>EZAb2tu18OS/5A6Kz4fdjxxo2Vb08N4/kpJRoPZxS54=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>

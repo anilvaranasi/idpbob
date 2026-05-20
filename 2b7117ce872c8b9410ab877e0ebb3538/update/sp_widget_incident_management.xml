@@ -104,7 +104,7 @@
     };
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css><![CDATA[.incident-management {
+        <css>.incident-management {
     padding: var(--carbon-spacing-05);
     background: var(--carbon-ui-background);
 }
@@ -449,7 +449,7 @@
     .incidents-table {
         font-size: 0.75rem;
     }
-}]]></css>
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description>Incident Management Dashboard with IBM ICA MCP Integration</description>
@@ -607,7 +607,7 @@
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>system</sys_created_by>
         <sys_created_on>2026-05-20 12:00:00</sys_created_on>
-        <sys_id>inc001inc001inc001inc001inc001inc001</sys_id>
+        <sys_id>inc001inc001inc001inc001inc001in</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Incident Management</sys_name>
         <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
@@ -773,5 +773,3 @@
 </div>]]></template>
     </sp_widget>
 </record_update>
-
-<!-- Made with Bob -->

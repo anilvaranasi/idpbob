@@ -118,7 +118,7 @@
     };
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css><![CDATA[.problem-management {
+        <css>.problem-management {
     padding: var(--carbon-spacing-05);
     background: var(--carbon-ui-background);
 }
@@ -490,7 +490,7 @@
     .action-buttons {
         flex-direction: column;
     }
-}]]></css>
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description>Problem Management Dashboard with AI Root Cause Analysis</description>
@@ -684,7 +684,7 @@
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>system</sys_created_by>
         <sys_created_on>2026-05-20 12:30:00</sys_created_on>
-        <sys_id>prb001prb001prb001prb001prb001prb001</sys_id>
+        <sys_id>prb001prb001prb001prb001prb001pr</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Problem Management</sys_name>
         <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
@@ -876,5 +876,3 @@
 </div>]]></template>
     </sp_widget>
 </record_update>
-
-<!-- Made with Bob -->

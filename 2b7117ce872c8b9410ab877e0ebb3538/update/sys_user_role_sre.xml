@@ -4,7 +4,6 @@
         <can_delegate>true</can_delegate>
         <description>Role for Site Reliability Engineers (SRE) / Operations Engineers who ensure system reliability and performance</description>
         <elevated_privilege>false</elevated_privilege>
-        <encryption_context/>
         <federated_id>KXboawvbBnYgXDRoODGb/xI/FS00VPn8i9Zw+/MDpKM=</federated_id>
         <grantable>true</grantable>
         <includes_roles/>

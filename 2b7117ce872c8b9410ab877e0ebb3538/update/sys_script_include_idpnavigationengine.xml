@@ -6,7 +6,9 @@
         <caller_access/>
         <client_callable>false</client_callable>
         <description>Capability-Driven Navigation Engine - Resolves user navigation based on Role → Capability → Taxonomy → UI abstraction model</description>
+        <mobile_callable>false</mobile_callable>
         <name>IDPNavigationEngine</name>
+        <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var IDPNavigationEngine = Class.create();
 IDPNavigationEngine.prototype = {
     initialize: function() {
@@ -243,5 +245,3 @@ IDPNavigationEngine.prototype = {
         <sys_updated_on>2026-05-02 07:03:00</sys_updated_on>
     </sys_script_include>
 </record_update>
-
-<!-- Made with Bob -->

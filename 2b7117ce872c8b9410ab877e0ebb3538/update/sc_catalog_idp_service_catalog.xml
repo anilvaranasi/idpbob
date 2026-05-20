@@ -5,7 +5,7 @@
         <desktop_continue_shopping/>
         <desktop_home_page/>
         <desktop_image/>
-        <editors_choice>false</editors_choice>
+        <editors/>
         <enable_wish_list>false</enable_wish_list>
         <manager/>
         <sys_class_name>sc_catalog</sys_class_name>
@@ -22,6 +22,5 @@
         <sys_updated_on>2026-05-01 15:00:00</sys_updated_on>
         <title>IDP Service Catalog</title>
     </sc_catalog>
+    <sys_translated_text action="delete_multiple" query="documentkey=c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1"/>
 </record_update>
-
-<!-- Made with Bob -->

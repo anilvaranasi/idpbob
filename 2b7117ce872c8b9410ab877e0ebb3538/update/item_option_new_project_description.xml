@@ -1,16 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="item_option_new">
     <item_option_new action="INSERT_OR_UPDATE">
         <active>true</active>
+        <attributes/>
+        <cat_item/>
+        <category/>
+        <choice_direction/>
+        <choice_field/>
+        <choice_table/>
+        <conversational_label/>
+        <create_roles/>
+        <default_html_value/>
         <default_value/>
-        <description>Brief description of the project</description>
+        <delete_roles/>
+        <delivery_plan/>
+        <description><![CDATA[Brief description of the project]]></description>
+        <disable_initial_slot_fill>false</disable_initial_slot_fill>
+        <display_title>false</display_title>
+        <do_not_select_first>false</do_not_select_first>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <dynamic_value_dot_walk_path/>
+        <dynamic_value_field/>
+        <enable_also_request_for>false</enable_also_request_for>
+        <example_text/>
+        <field/>
+        <global>false</global>
+        <help_tag/>
         <help_text>Provide a clear description of what this project does</help_text>
-        <label>Project Description</label>
+        <hidden>false</hidden>
+        <hide_on_grid>false</hide_on_grid>
+        <include_none>false</include_none>
+        <instructions/>
+        <layout/>
+        <list_table/>
+        <lookup_dependent_question/>
+        <lookup_label/>
+        <lookup_price/>
+        <lookup_source/>
+        <lookup_table/>
+        <lookup_unique>false</lookup_unique>
+        <lookup_value/>
+        <macro/>
+        <macroponent/>
         <mandatory>true</mandatory>
+        <map_to_field>false</map_to_field>
+        <mask_use_confirmation>false</mask_use_confirmation>
+        <mask_use_encryption>false</mask_use_encryption>
         <name>project_description</name>
+        <no_auto_populate_also_request_for>false</no_auto_populate_also_request_for>
+        <not_available_conversation>false</not_available_conversation>
         <order>200</order>
+        <post_insert_script/>
+        <pricing_implications>false</pricing_implications>
+        <published_ref/>
         <question_text>Describe your project</question_text>
+        <read_only>false</read_only>
+        <read_roles/>
+        <read_script/>
+        <rec_lookup_price/>
+        <record/>
+        <record_producer_table/>
         <reference/>
         <reference_qual/>
+        <reference_qual_condition/>
+        <rich_text/>
+        <roles_to_use_also_request_for/>
+        <save_script/>
+        <scale_max/>
+        <scale_min/>
+        <show_help>false</show_help>
+        <show_help_on_load>false</show_help_on_load>
+        <sp_widget/>
+        <summary_macro/>
         <sys_class_name>item_option_new</sys_class_name>
         <sys_created_by>system</sys_created_by>
         <sys_created_on>2026-05-01 15:00:00</sys_created_on>
@@ -23,9 +84,25 @@
         <sys_update_name>item_option_new_project_description</sys_update_name>
         <sys_updated_by>system</sys_updated_by>
         <sys_updated_on>2026-05-01 15:00:00</sys_updated_on>
+        <table/>
+        <tooltip/>
+        <topic_block/>
         <type>2</type>
+        <ui_page/>
+        <unique>false</unique>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier/>
+        <validate_regex/>
+        <variable_name/>
         <variable_set display_value="Project Details">d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1</variable_set>
+        <variable_width/>
+        <visibility/>
+        <visible_bundle>false</visible_bundle>
+        <visible_guide>false</visible_guide>
+        <visible_standalone>false</visible_standalone>
+        <visible_summary>false</visible_summary>
+        <write_roles/>
     </item_option_new>
+    <sys_translated_text action="delete_multiple" query="documentkey=d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3"/>
+    <fx_price action="delete_multiple" query="id=d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3"/>
 </record_update>
-
-<!-- Made with Bob -->

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="io_set_item">
     <io_set_item action="INSERT_OR_UPDATE">
-        <sc_cat_item display_value="New Application Project">f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1</sc_cat_item>
         <order>100</order>
-        <variable_set display_value="Project Details">d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1</variable_set>
+        <sc_cat_item display_value="">f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1</sc_cat_item>
         <sys_class_name>io_set_item</sys_class_name>
         <sys_created_by>system</sys_created_by>
         <sys_created_on>2026-05-01 15:00:00</sys_created_on>
@@ -15,7 +14,6 @@
         <sys_update_name>io_set_item_new_application_project_details</sys_update_name>
         <sys_updated_by>system</sys_updated_by>
         <sys_updated_on>2026-05-01 15:00:00</sys_updated_on>
+        <variable_set display_value="Project Details">d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1</variable_set>
     </io_set_item>
 </record_update>
-
-<!-- Made with Bob -->

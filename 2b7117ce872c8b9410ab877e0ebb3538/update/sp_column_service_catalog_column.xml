@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_column">
     <sp_column action="INSERT_OR_UPDATE">
+        <aria_label/>
         <class_name/>
         <order>0</order>
+        <semantic_tag/>
         <size>12</size>
-        <sp_row display_value="Service Catalog Row">d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0</sp_row>
+        <size_lg/>
+        <size_sm/>
+        <size_xs/>
+        <sp_row display_value="0">d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0</sp_row>
         <sys_class_name>sp_column</sys_class_name>
         <sys_created_by>system</sys_created_by>
         <sys_created_on>2026-05-02 06:57:00</sys_created_on>
@@ -18,5 +23,3 @@
         <sys_updated_on>2026-05-02 06:57:00</sys_updated_on>
     </sp_column>
 </record_update>
-
-<!-- Made with Bob -->

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_portal_catalog">
+    <m2m_sp_portal_catalog action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <order>100</order>
+        <sc_catalog display_value="IDP Service Catalog">c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1</sc_catalog>
+        <sp_portal display_value="IDPBob Portal">1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a</sp_portal>
+        <sys_class_name>m2m_sp_portal_catalog</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-05-20 15:21:30</sys_created_on>
+        <sys_id>f9a60714c3098310f6ebf8ddd4013170</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>IDP Service Catalog.IDPBob Portal</sys_name>
+        <sys_package display_value="IDPBob" source="x_ibmin_idpbob">2b7117ce872c8b9410ab877e0ebb3538</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IDPBob">2b7117ce872c8b9410ab877e0ebb3538</sys_scope>
+        <sys_update_name>m2m_sp_portal_catalog_f9a60714c3098310f6ebf8ddd4013170</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-05-20 15:21:30</sys_updated_on>
+    </m2m_sp_portal_catalog>
+</record_update>

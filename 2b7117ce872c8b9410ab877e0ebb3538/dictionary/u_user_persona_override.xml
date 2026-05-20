@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="6z7a8b9c0d1e2f3g4h5i6j7k8l9m0n1o" label="User Persona Override" max_length="0" name="u_user_persona_override" type="collection">
+        <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
+    </element>
+</database>
